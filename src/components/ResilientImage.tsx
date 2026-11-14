@@ -45,9 +45,8 @@ export const ResilientImage: React.FC<ResilientImageProps> = ({
       decoding="async"
       fetchPriority={fetchPriority}
       draggable={false}
-      referrerPolicy="no-referrer"
       onError={() => setHasError(true)}
-      className={className}
+      className={`block ${className}`}
     />
   );
 };

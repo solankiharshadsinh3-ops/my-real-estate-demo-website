@@ -444,7 +444,7 @@ export const PropertiesShowcase: React.FC<PropertiesShowcaseProps> = ({
                   {/* Image Container */}
                   <div
                     className={`relative overflow-hidden bg-[#101B2D] ${
-                      viewMode === 'list' ? 'lg:col-span-5 aspect-[4/3] lg:aspect-auto lg:min-h-[280px]' : 'aspect-[4/3]'
+                      viewMode === 'list' ? 'lg:col-span-5 aspect-[4/3] lg:aspect-auto lg:h-full lg:min-h-[280px]' : 'aspect-[4/3]'
                     }`}
                   >
                     <ResilientImage

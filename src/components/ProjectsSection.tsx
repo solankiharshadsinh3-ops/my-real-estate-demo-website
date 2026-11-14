@@ -36,7 +36,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
         {/* Marquee Editorial Project Feature */}
         {leadProject && (
           <div className="grid grid-cols-1 lg:grid-cols-12 bg-[#101B2D] text-white border border-[#C9A66B]/30 mb-10 overflow-hidden items-stretch">
-            <div className="lg:col-span-7 relative aspect-[16/10] lg:aspect-auto lg:min-h-[420px] overflow-hidden">
+            <div className="lg:col-span-7 relative aspect-[16/10] lg:aspect-auto lg:h-full lg:min-h-[420px] overflow-hidden bg-[#101B2D]">
               <div
                 className="w-full h-[calc(100%+28px)] -mt-3.5 animate-float-image-deep"
                 style={{ animationDelay: '0.9s' }}

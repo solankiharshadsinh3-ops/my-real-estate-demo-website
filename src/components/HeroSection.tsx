@@ -22,6 +22,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onHeroSearch }) => {
   const [location, setLocation] = useState('');
   const [minPriceLakhs, setMinPriceLakhs] = useState('');
   const [maxPriceLakhs, setMaxPriceLakhs] = useState('');
+  const [heroImgError, setHeroImgError] = useState(false);
 
   const sectionRef = useRef<HTMLElement>(null);
   const bgLayerRef = useRef<HTMLDivElement>(null);
@@ -152,16 +153,22 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onHeroSearch }) => {
         className="hero-depth-plane absolute -inset-4 pointer-events-none overflow-hidden"
       >
         <div className="w-full h-[calc(100%+28px)] -mt-3.5 animate-float-image">
-          <img
-            src={HERO_IMAGE}
-            alt="ELITE ESTATES twilight architectural villa with infinity pool"
-            loading="eager"
-            decoding="async"
-            fetchPriority="high"
-            draggable={false}
-            referrerPolicy="no-referrer"
-            className="w-full h-full object-cover animate-slow-zoom opacity-80"
-          />
+          {!heroImgError && HERO_IMAGE ? (
+            <img
+              src={HERO_IMAGE}
+              alt="ELITE ESTATES twilight architectural villa with infinity pool"
+              width={1376}
+              height={768}
+              loading="eager"
+              decoding="async"
+              fetchPriority="high"
+              draggable={false}
+              onError={() => setHeroImgError(true)}
+              className="block w-full h-full object-cover animate-slow-zoom opacity-80"
+            />
+          ) : (
+            <div className="w-full h-full bg-luxury-navy-animated" aria-hidden="true" />
+          )}
         </div>
         {/* Measured Luxury Scrims for High WCAG Contrast */}
         <div className="absolute inset-0 bg-gradient-to-b from-[#101B2D]/82 via-[#101B2D]/48 to-[#101B2D]/95" />

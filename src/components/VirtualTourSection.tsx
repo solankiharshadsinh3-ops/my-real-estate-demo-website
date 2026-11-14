@@ -182,7 +182,7 @@ export const VirtualTourSection: React.FC<VirtualTourSectionProps> = ({ stops })
               }`}
             >
               <div
-                className="w-full h-full transition-transform duration-300 ease-out"
+                className="absolute inset-0 transition-transform duration-300 ease-out"
                 style={{
                   transform: `scale(${zoomLevel}) translate(${panOffset.x}%, ${panOffset.y}%)`,
                 }}

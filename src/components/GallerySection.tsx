@@ -96,7 +96,7 @@ export const GallerySection: React.FC<GallerySectionProps> = ({ photos }) => {
               className="group relative w-full break-inside-avoid block overflow-hidden bg-[#101B2D] border border-[#101B2D]/10 hover:border-[#C9A66B]/60 focus-visible:outline-2 focus-visible:outline-[#C9A66B] active:scale-[0.99] transition-all duration-200 text-left cursor-pointer"
             >
               <div
-                className={`w-full overflow-hidden ${
+                className={`relative w-full overflow-hidden bg-[#101B2D] ${
                   photo.aspect === 'tall'
                     ? 'aspect-[3/4]'
                     : photo.aspect === 'wide'
