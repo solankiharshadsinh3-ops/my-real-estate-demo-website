@@ -92,7 +92,7 @@ export const WhyChooseUsSection: React.FC = () => {
     <section
       id="about"
       ref={sectionRef}
-      className="py-20 sm:py-28 bg-[#182A43] text-white"
+      className="py-20 sm:py-28 bg-luxury-royal-animated text-white"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start mb-16">

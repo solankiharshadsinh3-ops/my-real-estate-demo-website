@@ -13,12 +13,41 @@
 }
 
 @layer base {
-  html,
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: clip;
+    background-color: #101B2D;
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
   body {
-    overflow-x: hidden;
+    width: 100%;
+    max-width: 100%;
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: clip;
     font-family: var(--font-sans);
-    background-color: #F7F6F2;
+    background-color: #101B2D;
     color: #20252C;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  #root {
+    width: 100%;
+    max-width: 100%;
+    min-height: 100vh;
+    overflow-x: clip;
   }
 
   h1,
@@ -27,6 +56,40 @@
   .font-display {
     font-family: var(--font-serif);
     text-wrap: balance;
+  }
+}
+
+/* Luxury integrated vertical scrollbar for desktop browsers (preserves native mobile overlay scrolling) */
+@media (any-pointer: fine) {
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #101B2D;
+    border-left: 1px solid rgba(201, 166, 107, 0.16);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: rgba(201, 166, 107, 0.62);
+    border-radius: 9999px;
+    border: 2px solid #101B2D;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #DFC391;
+  }
+
+  ::-webkit-scrollbar-corner {
+    background: #101B2D;
+  }
+
+  @supports not selector(::-webkit-scrollbar) {
+    html {
+      scrollbar-width: thin;
+      scrollbar-color: rgba(201, 166, 107, 0.72) #101B2D;
+    }
   }
 }
 
@@ -49,22 +112,42 @@
 @keyframes floatGentle {
   0%,
   100% {
-    transform: translateY(0px);
+    transform: translate3d(0, 0, 0);
   }
   50% {
-    transform: translateY(-10px);
+    transform: translate3d(0, -12px, 0);
+  }
+}
+
+@keyframes floatUpDown {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -12px, 0);
+  }
+}
+
+@keyframes floatUpDownDeep {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -14px, 0);
   }
 }
 
 @keyframes goldPulseLine {
   0%,
   100% {
-    opacity: 0.25;
-    transform: translateY(0px);
+    opacity: 0.3;
+    transform: translate3d(0, 0, 0);
   }
   50% {
-    opacity: 0.75;
-    transform: translateY(-6px);
+    opacity: 0.8;
+    transform: translate3d(0, -11px, 0);
   }
 }
 
@@ -83,20 +166,653 @@
 }
 
 .animate-float-gentle {
-  animation: floatGentle 6s ease-in-out infinite;
+  animation: floatGentle 4.2s ease-in-out infinite;
+  will-change: transform;
+}
+
+.animate-float-image {
+  animation: floatUpDown 4.2s ease-in-out infinite;
+  will-change: transform;
+}
+
+.animate-float-image-deep {
+  animation: floatUpDownDeep 4.8s ease-in-out infinite;
+  will-change: transform;
 }
 
 .animate-gold-particle {
-  animation: goldPulseLine 5s ease-in-out infinite;
+  animation: goldPulseLine 3.6s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+@keyframes luxuryGradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes luxuryGradientDrift {
+  0% {
+    background-position: 15% 0%;
+  }
+  50% {
+    background-position: 85% 100%;
+  }
+  100% {
+    background-position: 15% 0%;
+  }
+}
+
+.bg-luxury-navy-animated {
+  background-color: #101B2D;
+  background-image:
+    radial-gradient(circle at 18% 22%, rgba(201, 166, 107, 0.08) 0%, transparent 46%),
+    linear-gradient(125deg, #0D1726 0%, #101B2D 34%, #182A43 68%, #101B2D 100%);
+  background-size: 200% 200%;
+  animation: luxuryGradientShift 12s ease-in-out infinite;
+}
+
+.bg-luxury-royal-animated {
+  background-color: #182A43;
+  background-image:
+    radial-gradient(circle at 82% 28%, rgba(201, 166, 107, 0.09) 0%, transparent 48%),
+    linear-gradient(135deg, #101B2D 0%, #182A43 42%, #1D3352 72%, #142339 100%);
+  background-size: 220% 220%;
+  animation: luxuryGradientDrift 14s ease-in-out infinite;
+}
+
+.bg-luxury-ivory-animated {
+  background-color: #F7F6F2;
+  background-image:
+    radial-gradient(circle at 84% 16%, rgba(201, 166, 107, 0.07) 0%, transparent 45%),
+    linear-gradient(120deg, #F7F6F2 0%, #FFFFFF 45%, #F1EEE6 78%, #F7F6F2 100%);
+  background-size: 200% 200%;
+  animation: luxuryGradientShift 13s ease-in-out infinite;
+}
+
+@keyframes pageFadeSettle {
+  0% {
+    opacity: 0.86;
+    transform: translate3d(0, 8px, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.page-transition-settle {
+  animation: pageFadeSettle 320ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes dividerStrokeDraw {
+  from {
+    stroke-dashoffset: 1600;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes dividerWaveDrift {
+  0%,
+  100% {
+    transform: translate3d(-2%, 0, 0);
+  }
+  50% {
+    transform: translate3d(2%, 0, 0);
+  }
+}
+
+@keyframes dividerStreak {
+  0% {
+    transform: translate3d(-100%, 0, 0);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.85;
+  }
+  80% {
+    opacity: 0.85;
+  }
+  100% {
+    transform: translate3d(240%, 0, 0);
+    opacity: 0;
+  }
+}
+
+@keyframes dividerGlowPulse {
+  0%,
+  100% {
+    opacity: 0.45;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.95;
+    transform: scale(1.06);
+  }
+}
+
+@keyframes dividerParticleDrift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(45deg);
+    opacity: 0.35;
+  }
+  50% {
+    transform: translate3d(0, -10px, 0) rotate(45deg);
+    opacity: 0.9;
+  }
+}
+
+.arch-divider {
+  opacity: 0.45;
+  transform: translate3d(0, 8px, 0);
+  transition:
+    opacity 650ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 650ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.arch-divider.is-in-view {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+.arch-divider .arch-draw-line {
+  stroke-dasharray: 1600;
+  stroke-dashoffset: 1600;
+}
+
+.arch-divider.is-in-view .arch-draw-line {
+  animation: dividerStrokeDraw 1.35s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.arch-divider.is-in-view .arch-wave-drift {
+  animation: dividerWaveDrift 11s ease-in-out infinite;
+  will-change: transform;
+}
+
+.arch-divider.is-in-view .arch-light-streak {
+  animation: dividerStreak 6.5s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+.arch-divider.is-in-view .arch-glow-pulse {
+  animation: dividerGlowPulse 4.5s ease-in-out infinite;
+  transform-origin: center;
+  will-change: transform, opacity;
+}
+
+.arch-divider.is-in-view .arch-particle {
+  animation: dividerParticleDrift 4s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+/* ==========================================================================
+   ELITE ESTATES — Ultra Premium Interactive Button System
+   ========================================================================== */
+@layer components {
+  .btn-lux-outline {
+    background-color: transparent;
+    border-color: rgba(201, 166, 107, 0.55);
+  }
+}
+
+.btn-lux {
+  position: relative;
+  transition:
+    transform 220ms cubic-bezier(0.16, 1, 0.3, 1),
+    background-color 220ms cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 220ms cubic-bezier(0.16, 1, 0.3, 1),
+    color 220ms cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 260ms cubic-bezier(0.16, 1, 0.3, 1);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn-lux:focus-visible {
+  outline: 2px solid #C9A66B;
+  outline-offset: 2px;
+}
+
+.btn-lux .btn-lux-arrow,
+.btn-lux-gold .btn-lux-arrow,
+.btn-luxury-cta .btn-lux-arrow,
+.btn-lux-navy .btn-lux-arrow,
+.btn-lux-outline .btn-lux-arrow,
+.btn-lux-link .btn-lux-arrow {
+  transition:
+    transform 220ms cubic-bezier(0.16, 1, 0.3, 1),
+    color 220ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-lux .btn-lux-icon-shift,
+.btn-lux-gold .btn-lux-icon-shift,
+.btn-luxury-cta .btn-lux-icon-shift,
+.btn-lux-navy .btn-lux-icon-shift,
+.btn-lux-outline .btn-lux-icon-shift,
+.btn-lux-light .btn-lux-icon-shift {
+  transition:
+    transform 220ms cubic-bezier(0.16, 1, 0.3, 1),
+    color 220ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (hover: hover) {
+  .btn-lux:not(:disabled):hover {
+    transform: translate3d(0, -2px, 0);
+  }
+
+  .btn-lux:not(:disabled):hover .btn-lux-arrow {
+    transform: translate3d(3px, 0, 0);
+  }
+
+  .btn-lux:not(:disabled):hover .btn-lux-icon-shift {
+    transform: scale(1.08);
+  }
+}
+
+.btn-lux:not(:disabled):active {
+  transform: translate3d(0, 0, 0) scale(0.97);
+}
+
+/* 1. Primary Gold Buttons */
+.btn-lux-gold,
+.btn-luxury-cta {
+  position: relative;
+  overflow: hidden;
+  background-color: #C9A66B;
+  color: #101B2D;
+  box-shadow:
+    0 4px 12px -3px rgba(16, 27, 45, 0.24),
+    0 1px 2px rgba(16, 27, 45, 0.12);
+  transition:
+    transform 220ms cubic-bezier(0.16, 1, 0.3, 1),
+    background-color 220ms cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 220ms cubic-bezier(0.16, 1, 0.3, 1),
+    color 220ms cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 260ms cubic-bezier(0.16, 1, 0.3, 1);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn-lux-gold::after,
+.btn-luxury-cta::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    110deg,
+    transparent 18%,
+    rgba(255, 255, 255, 0.38) 50%,
+    transparent 82%
+  );
+  transform: translate3d(-135%, 0, 0);
+  transition: transform 580ms cubic-bezier(0.22, 1, 0.36, 1);
+  pointer-events: none;
+}
+
+.btn-lux-gold:focus-visible,
+.btn-luxury-cta:focus-visible {
+  outline: 2px solid #DFC391;
+  outline-offset: 2px;
+}
+
+@media (hover: hover) {
+  .btn-lux-gold:not(:disabled):hover,
+  .btn-luxury-cta:not(:disabled):hover {
+    transform: translate3d(0, -2px, 0);
+    background-color: #DFC391;
+    background-image: linear-gradient(135deg, #E5CA99 0%, #C9A66B 52%, #DFC391 100%);
+    color: #0D1726;
+    box-shadow:
+      0 10px 24px -6px rgba(201, 166, 107, 0.48),
+      0 4px 12px -3px rgba(16, 27, 45, 0.25);
+  }
+
+  .btn-lux-gold:not(:disabled):hover::after,
+  .btn-luxury-cta:not(:disabled):hover::after {
+    transform: translate3d(135%, 0, 0);
+  }
+
+  .btn-lux-gold:not(:disabled):hover .btn-lux-arrow,
+  .btn-luxury-cta:not(:disabled):hover .btn-lux-arrow {
+    transform: translate3d(3px, 0, 0);
+  }
+
+  .btn-lux-gold:not(:disabled):hover .btn-lux-icon-shift,
+  .btn-luxury-cta:not(:disabled):hover .btn-lux-icon-shift {
+    transform: scale(1.08);
+  }
+}
+
+.btn-lux-gold:not(:disabled):active,
+.btn-luxury-cta:not(:disabled):active {
+  transform: translate3d(0, 0, 0) scale(0.97);
+  box-shadow:
+    0 3px 10px -2px rgba(201, 166, 107, 0.35),
+    0 2px 6px rgba(16, 27, 45, 0.2);
+}
+
+/* 2. Navy Buttons */
+.btn-lux-navy {
+  position: relative;
+  overflow: hidden;
+  background-color: #101B2D;
+  color: #FFFFFF;
+  border: 1px solid rgba(201, 166, 107, 0.22);
+  box-shadow:
+    0 4px 14px -4px rgba(16, 27, 45, 0.3),
+    0 1px 3px rgba(16, 27, 45, 0.14);
+  transition:
+    transform 220ms cubic-bezier(0.16, 1, 0.3, 1),
+    background-color 220ms cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 220ms cubic-bezier(0.16, 1, 0.3, 1),
+    color 220ms cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 260ms cubic-bezier(0.16, 1, 0.3, 1);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn-lux-navy:focus-visible {
+  outline: 2px solid #C9A66B;
+  outline-offset: 2px;
+}
+
+@media (hover: hover) {
+  .btn-lux-navy:not(:disabled):hover {
+    transform: translate3d(0, -2px, 0);
+    background-color: #182A43;
+    background-image: linear-gradient(135deg, #182A43 0%, #223B5E 55%, #15253C 100%);
+    border-color: rgba(201, 166, 107, 0.72);
+    color: #FFFFFF;
+    box-shadow:
+      0 12px 26px -8px rgba(16, 27, 45, 0.44),
+      0 0 14px -3px rgba(201, 166, 107, 0.28);
+  }
+
+  .btn-lux-navy:not(:disabled):hover .btn-lux-arrow {
+    transform: translate3d(3px, 0, 0);
+    color: #DFC391;
+  }
+
+  .btn-lux-navy:not(:disabled):hover .btn-lux-icon-shift {
+    color: #DFC391;
+    transform: scale(1.06);
+  }
+}
+
+.btn-lux-navy:not(:disabled):active {
+  transform: translate3d(0, 0, 0) scale(0.97);
+  box-shadow: 0 3px 10px -2px rgba(16, 27, 45, 0.35);
+}
+
+/* 3. Outline Buttons (Transparent/Navy Rest -> Champagne Gold Fill + Dark Navy Text) */
+.btn-lux-outline {
+  position: relative;
+  transition:
+    transform 220ms cubic-bezier(0.16, 1, 0.3, 1),
+    background-color 220ms cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 220ms cubic-bezier(0.16, 1, 0.3, 1),
+    color 220ms cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 260ms cubic-bezier(0.16, 1, 0.3, 1);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn-lux-outline:focus-visible {
+  outline: 2px solid #C9A66B;
+  outline-offset: 2px;
+}
+
+@media (hover: hover) {
+  .btn-lux-outline:not(:disabled):hover {
+    transform: translate3d(0, -2px, 0);
+    background-color: #C9A66B;
+    border-color: #C9A66B;
+    color: #101B2D;
+    box-shadow:
+      0 10px 22px -6px rgba(201, 166, 107, 0.4),
+      0 4px 10px -3px rgba(16, 27, 45, 0.16);
+  }
+
+  .btn-lux-outline:not(:disabled):hover .btn-lux-icon-shift {
+    color: #101B2D;
+    transform: scale(1.06);
+  }
+
+  .btn-lux-outline:not(:disabled):hover .btn-lux-arrow {
+    transform: translate3d(3px, 0, 0);
+    color: #101B2D;
+  }
+}
+
+.btn-lux-outline:not(:disabled):active {
+  transform: translate3d(0, 0, 0) scale(0.97);
+  box-shadow: 0 3px 8px -2px rgba(201, 166, 107, 0.3);
+}
+
+/* 4. Light Buttons (White / Ivory -> Soft Champagne-Gold Tint + Gold Border + Shadow) */
+.btn-lux-light {
+  position: relative;
+  background-color: #FFFFFF;
+  color: #101B2D;
+  border-color: rgba(16, 27, 45, 0.16);
+  box-shadow: 0 2px 8px -3px rgba(16, 27, 45, 0.08);
+  transition:
+    transform 220ms cubic-bezier(0.16, 1, 0.3, 1),
+    background-color 220ms cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 220ms cubic-bezier(0.16, 1, 0.3, 1),
+    color 220ms cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 260ms cubic-bezier(0.16, 1, 0.3, 1);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn-lux-light:focus-visible {
+  outline: 2px solid #C9A66B;
+  outline-offset: 2px;
+}
+
+@media (hover: hover) {
+  .btn-lux-light:not(:disabled):hover {
+    transform: translate3d(0, -2px, 0);
+    background-color: #F7F1E5;
+    border-color: rgba(201, 166, 107, 0.78);
+    color: #101B2D;
+    box-shadow:
+      0 8px 20px -6px rgba(16, 27, 45, 0.14),
+      0 0 12px -3px rgba(201, 166, 107, 0.25);
+  }
+
+  .btn-lux-light:not(:disabled):hover .btn-lux-icon-shift {
+    color: #A68246;
+  }
+}
+
+.btn-lux-light:not(:disabled):active {
+  transform: translate3d(0, 0, 0) scale(0.97);
+  box-shadow: 0 2px 6px -2px rgba(16, 27, 45, 0.12);
+}
+
+/* 5. Segmented & Filter Tab Buttons */
+.btn-lux-tab {
+  transition:
+    transform 180ms cubic-bezier(0.16, 1, 0.3, 1),
+    background-color 200ms cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 200ms cubic-bezier(0.16, 1, 0.3, 1),
+    color 200ms cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 220ms cubic-bezier(0.16, 1, 0.3, 1);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn-lux-tab:focus-visible {
+  outline: 2px solid #C9A66B;
+  outline-offset: 2px;
+}
+
+@media (hover: hover) {
+  .btn-lux-tab:not(:disabled):hover {
+    box-shadow: 0 4px 12px -4px rgba(16, 27, 45, 0.18);
+  }
+}
+
+.btn-lux-tab:not(:disabled):active {
+  transform: scale(0.97);
+}
+
+/* 6. Compact Icon Controls */
+.btn-lux-icon {
+  transition:
+    transform 200ms cubic-bezier(0.16, 1, 0.3, 1),
+    background-color 200ms cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 200ms cubic-bezier(0.16, 1, 0.3, 1),
+    color 200ms cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 220ms cubic-bezier(0.16, 1, 0.3, 1);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn-lux-icon:focus-visible {
+  outline: 2px solid #C9A66B;
+  outline-offset: 2px;
+}
+
+@media (hover: hover) {
+  .btn-lux-icon:not(:disabled):hover {
+    transform: translate3d(0, -2px, 0);
+    box-shadow:
+      0 8px 18px -6px rgba(16, 27, 45, 0.35),
+      0 0 12px -3px rgba(201, 166, 107, 0.32);
+  }
+}
+
+.btn-lux-icon:not(:disabled):active {
+  transform: translate3d(0, 0, 0) scale(0.95);
+}
+
+/* 7. Absolute-Positioned Icon Controls */
+.btn-lux-positioned {
+  transition:
+    scale 200ms cubic-bezier(0.16, 1, 0.3, 1),
+    background-color 200ms cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 200ms cubic-bezier(0.16, 1, 0.3, 1),
+    color 200ms cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 220ms cubic-bezier(0.16, 1, 0.3, 1);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn-lux-positioned:focus-visible {
+  outline: 2px solid #C9A66B;
+  outline-offset: 2px;
+}
+
+@media (hover: hover) {
+  .btn-lux-positioned:not(:disabled):hover {
+    scale: 1.07;
+    box-shadow:
+      0 10px 22px -6px rgba(16, 27, 45, 0.45),
+      0 0 14px -2px rgba(201, 166, 107, 0.38);
+  }
+}
+
+.btn-lux-positioned:not(:disabled):active {
+  scale: 0.94;
+}
+
+/* 8. Editorial Inline Action Buttons */
+.btn-lux-link {
+  transition:
+    transform 200ms cubic-bezier(0.16, 1, 0.3, 1),
+    color 200ms cubic-bezier(0.16, 1, 0.3, 1);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn-lux-link:focus-visible {
+  outline: 2px solid #C9A66B;
+  outline-offset: 3px;
+}
+
+@media (hover: hover) {
+  .btn-lux-link:not(:disabled):hover .btn-lux-arrow {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+
+.btn-lux-link:not(:disabled):active {
+  transform: scale(0.97);
+}
+
+.hero-depth-plane {
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
 }
 
 @media (prefers-reduced-motion: reduce) {
   .animate-slow-zoom,
   .animate-float-gentle,
-  .animate-gold-particle {
+  .animate-float-image,
+  .animate-float-image-deep,
+  .animate-gold-particle,
+  .page-transition-settle,
+  .arch-divider.is-in-view .arch-draw-line,
+  .arch-divider.is-in-view .arch-wave-drift,
+  .arch-divider.is-in-view .arch-light-streak,
+  .arch-divider.is-in-view .arch-glow-pulse,
+  .arch-divider.is-in-view .arch-particle {
     animation: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+    stroke-dashoffset: 0 !important;
+  }
+  .btn-lux,
+  .btn-lux-gold,
+  .btn-luxury-cta,
+  .btn-lux-navy,
+  .btn-lux-outline,
+  .btn-lux-light,
+  .btn-lux-tab,
+  .btn-lux-icon,
+  .btn-lux-positioned,
+  .btn-lux-link,
+  .btn-lux-gold::after,
+  .btn-luxury-cta::after,
+  .btn-lux-arrow,
+  .btn-lux-icon-shift {
+    transition: background-color 150ms ease, color 150ms ease, border-color 150ms ease !important;
+    transform: none !important;
+    scale: 1 !important;
+  }
+  .btn-lux-gold::after,
+  .btn-luxury-cta::after {
+    display: none;
+  }
+  .hero-depth-plane {
+    transform: none !important;
+  }
+  .arch-divider {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .bg-luxury-navy-animated,
+  .bg-luxury-royal-animated,
+  .bg-luxury-ivory-animated {
+    animation: none !important;
+    background-position: 50% 50% !important;
   }
   html {
     scroll-behavior: auto !important;
+  }
+}
+
+/* Mobile & low-power touch GPU optimization: keep luxury ambient depth while preventing scroll jank */
+@media (max-width: 767px), (hover: none) and (pointer: coarse) {
+  .animate-slow-zoom {
+    animation-duration: 32s;
+  }
+  .bg-luxury-navy-animated,
+  .bg-luxury-royal-animated,
+  .bg-luxury-ivory-animated {
+    animation-duration: 20s;
   }
 }

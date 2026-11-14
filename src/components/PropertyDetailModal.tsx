@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { AnimatePresence, motion } from 'motion/react';
 import {
   Bath,
   BedDouble,
@@ -68,14 +69,20 @@ export const PropertyDetailModal: React.FC<PropertyDetailModalProps> = ({
     };
   }, [property, onClose]);
 
-  if (!property) return null;
+  const similarProperties = property
+    ? allProperties
+        .filter((p) => p.id !== property.id && (p.category === property.category || p.city === property.city))
+        .slice(0, 3)
+    : [];
 
-  const similarProperties = allProperties
-    .filter((p) => p.id !== property.id && (p.category === property.category || p.city === property.city))
-    .slice(0, 3);
-
-  const visibleRooms = property.floorPlanRooms.filter((r) => r.level === floorLevel);
-  const roomsToDraw = visibleRooms.length > 0 ? visibleRooms : property.floorPlanRooms;
+  const visibleRooms = property
+    ? property.floorPlanRooms.filter((r) => r.level === floorLevel)
+    : [];
+  const roomsToDraw = property
+    ? visibleRooms.length > 0
+      ? visibleRooms
+      : property.floorPlanRooms
+    : [];
 
   const handleEnquirySubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -96,16 +103,30 @@ export const PropertyDetailModal: React.FC<PropertyDetailModalProps> = ({
   };
 
   return (
-    <div
-      className="fixed inset-0 z-50 bg-[#101B2D]/85 backdrop-blur-sm overflow-y-auto"
-      role="dialog"
-      aria-modal="true"
-      aria-label={`${property.title} property details`}
-    >
-      <div className="min-h-screen py-4 sm:py-8 px-3 sm:px-6 flex justify-center items-start">
-        <div className="relative w-full max-w-6xl bg-[#F7F6F2] text-[#20252C] shadow-2xl border border-[#C9A66B]/40 overflow-hidden">
+    <AnimatePresence>
+      {property && (
+        <motion.div
+          key="property-detail-backdrop"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+          className="fixed inset-0 z-50 bg-[#101B2D]/85 backdrop-blur-sm overflow-y-auto"
+          role="dialog"
+          aria-modal="true"
+          aria-label={`${property.title} property details`}
+        >
+          <div className="min-h-screen py-4 sm:py-8 px-3 sm:px-6 flex justify-center items-start">
+            <motion.div
+              key={property.id}
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 8 }}
+              transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
+              className="relative w-full max-w-6xl bg-[#F7F6F2] text-[#20252C] shadow-2xl border border-[#C9A66B]/40 overflow-hidden"
+            >
           {/* Top Bar */}
-          <div className="sticky top-0 z-20 bg-[#101B2D] text-white px-5 sm:px-8 py-4 flex items-center justify-between gap-4 border-b border-[#C9A66B]/30">
+          <div className="sticky top-0 z-20 bg-[#101B2D] text-white px-4 sm:px-8 py-3.5 sm:py-4 flex items-center justify-between gap-3 sm:gap-4 border-b border-[#C9A66B]/30">
             <div className="min-w-0">
               <p className="text-[11px] font-medium tracking-[0.16em] uppercase text-[#C9A66B] truncate">
                 {property.category} · For {property.transaction === 'Buy' ? 'Sale' : 'Lease'}
@@ -115,27 +136,27 @@ export const PropertyDetailModal: React.FC<PropertyDetailModalProps> = ({
               </h2>
             </div>
 
-            <div className="flex items-center gap-3 shrink-0">
+            <div className="flex items-center gap-2 sm:gap-3 shrink-0">
               <span className="hidden sm:inline font-serif text-2xl font-semibold text-[#C9A66B] tabular-nums">
                 {property.priceDisplay}
               </span>
               <button
                 type="button"
                 onClick={() => onToggleWishlist(property.id)}
-                className={`px-3.5 py-2 text-xs font-semibold tracking-wider uppercase inline-flex items-center gap-1.5 border transition-colors cursor-pointer ${
+                className={`px-3 sm:px-3.5 py-2 min-h-[40px] text-xs font-semibold tracking-wider uppercase inline-flex items-center gap-1.5 border cursor-pointer ${
                   isSaved
-                    ? 'bg-[#C9A66B] text-[#101B2D] border-[#C9A66B]'
-                    : 'border-white/25 text-white hover:border-[#C9A66B]'
+                    ? 'btn-lux-gold border-[#C9A66B]'
+                    : 'btn-lux-outline border-white/25 text-white'
                 }`}
               >
-                <Heart className={`w-3.5 h-3.5 ${isSaved ? 'fill-current' : ''}`} />
+                <Heart className={`w-3.5 h-3.5 btn-lux-icon-shift ${isSaved ? 'fill-current' : ''}`} />
                 <span className="hidden md:inline">{isSaved ? 'Saved' : 'Save'}</span>
               </button>
               <button
                 type="button"
                 onClick={onClose}
                 aria-label="Close property details"
-                className="w-10 h-10 inline-flex items-center justify-center bg-white/10 hover:bg-[#C9A66B] hover:text-[#101B2D] text-white transition-colors cursor-pointer"
+                className="btn-lux-icon w-11 h-11 sm:w-10 sm:h-10 inline-flex items-center justify-center bg-white/10 border border-white/15 hover:border-[#C9A66B] hover:bg-[#C9A66B] hover:text-[#101B2D] text-white cursor-pointer"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -143,17 +164,17 @@ export const PropertyDetailModal: React.FC<PropertyDetailModalProps> = ({
           </div>
 
           {/* Main Content Body */}
-          <div className="p-5 sm:p-8 lg:p-10 space-y-10">
+          <div className="p-4 sm:p-8 lg:p-10 space-y-8 sm:space-y-10">
             {/* Large Property Gallery */}
             <div className="space-y-3">
-              <div className="relative aspect-[16/9] max-h-[520px] w-full overflow-hidden bg-[#101B2D]">
+              <div className="relative aspect-[4/3] sm:aspect-[16/9] max-h-[520px] w-full overflow-hidden bg-[#101B2D]">
                 <ResilientImage
                   src={property.galleryImages[activeImageIdx] || property.primaryImage}
                   alt={`${property.title} view ${activeImageIdx + 1}`}
                   className="w-full h-full object-cover"
                   eager
                 />
-                <div className="absolute bottom-4 left-4 bg-[#101B2D]/85 backdrop-blur-md px-4 py-2 border border-[#C9A66B]/30 text-white text-xs">
+                <div className="absolute bottom-3 left-3 right-3 sm:right-auto sm:bottom-4 sm:left-4 sm:max-w-lg bg-[#101B2D]/88 backdrop-blur-md px-3.5 py-2 border border-[#C9A66B]/30 text-white text-xs leading-snug">
                   {property.architecturalHighlight}
                 </div>
               </div>
@@ -164,10 +185,10 @@ export const PropertyDetailModal: React.FC<PropertyDetailModalProps> = ({
                     key={`${property.id}-gal-${idx}`}
                     type="button"
                     onClick={() => setActiveImageIdx(idx)}
-                    className={`relative aspect-[4/3] overflow-hidden border-2 transition-all cursor-pointer ${
+                    className={`btn-lux-tab relative aspect-[4/3] overflow-hidden border-2 cursor-pointer ${
                       activeImageIdx === idx
                         ? 'border-[#C9A66B] opacity-100'
-                        : 'border-transparent opacity-65 hover:opacity-100'
+                        : 'border-transparent opacity-65 hover:opacity-100 hover:border-[#C9A66B]/50'
                     }`}
                   >
                     <ResilientImage
@@ -321,10 +342,10 @@ export const PropertyDetailModal: React.FC<PropertyDetailModalProps> = ({
                           key={lvl}
                           type="button"
                           onClick={() => setFloorLevel(lvl)}
-                          className={`px-4 py-1.5 text-xs font-semibold uppercase tracking-wider transition-colors cursor-pointer ${
+                          className={`btn-lux-tab px-4 py-1.5 text-xs font-semibold uppercase tracking-wider cursor-pointer ${
                             floorLevel === lvl
                               ? 'bg-[#101B2D] text-[#C9A66B]'
-                              : 'text-[#777E88] hover:text-[#101B2D]'
+                              : 'text-[#777E88] hover:text-[#101B2D] hover:bg-white/80'
                           }`}
                         >
                           {lvl} Level
@@ -434,10 +455,10 @@ export const PropertyDetailModal: React.FC<PropertyDetailModalProps> = ({
                           `I would like to schedule a private viewing for ${property.title} (${property.location}).`
                         );
                       }}
-                      className={`py-2 text-xs font-semibold uppercase tracking-wider transition-colors cursor-pointer inline-flex items-center justify-center gap-1.5 ${
+                      className={`btn-lux-tab py-2 text-xs font-semibold uppercase tracking-wider cursor-pointer inline-flex items-center justify-center gap-1.5 ${
                         enquiryMode === 'visit'
                           ? 'bg-[#C9A66B] text-[#101B2D]'
-                          : 'text-white/80 hover:text-white'
+                          : 'text-white/80 hover:text-white hover:bg-white/8'
                       }`}
                     >
                       <Calendar className="w-3.5 h-3.5" />
@@ -451,10 +472,10 @@ export const PropertyDetailModal: React.FC<PropertyDetailModalProps> = ({
                           `Please share the brochure, floor plans, and pricing schedule for ${property.title}.`
                         );
                       }}
-                      className={`py-2 text-xs font-semibold uppercase tracking-wider transition-colors cursor-pointer ${
+                      className={`btn-lux-tab py-2 text-xs font-semibold uppercase tracking-wider cursor-pointer ${
                         enquiryMode === 'info'
                           ? 'bg-[#C9A66B] text-[#101B2D]'
-                          : 'text-white/80 hover:text-white'
+                          : 'text-white/80 hover:text-white hover:bg-white/8'
                       }`}
                     >
                       Request Info
@@ -475,7 +496,7 @@ export const PropertyDetailModal: React.FC<PropertyDetailModalProps> = ({
                       <button
                         type="button"
                         onClick={() => setSubmitted(false)}
-                        className="text-xs font-semibold text-[#C9A66B] underline cursor-pointer"
+                        className="btn-lux-link text-xs font-semibold text-[#C9A66B] hover:text-[#DFC391] underline cursor-pointer"
                       >
                         Send Another Inquiry
                       </button>
@@ -498,7 +519,7 @@ export const PropertyDetailModal: React.FC<PropertyDetailModalProps> = ({
                           value={fullName}
                           onChange={(e) => setFullName(e.target.value)}
                           placeholder="Enter your full name"
-                          className="w-full h-11 px-3.5 bg-[#182A43] border border-white/15 text-sm text-white placeholder:text-white/40 focus:outline-none focus:border-[#C9A66B]"
+                          className="w-full h-11 px-3.5 bg-[#182A43] border border-white/15 text-base sm:text-sm text-white placeholder:text-white/40 focus:outline-none focus:border-[#C9A66B]"
                         />
                       </div>
 
@@ -512,7 +533,7 @@ export const PropertyDetailModal: React.FC<PropertyDetailModalProps> = ({
                           value={email}
                           onChange={(e) => setEmail(e.target.value)}
                           placeholder="name@company.com"
-                          className="w-full h-11 px-3.5 bg-[#182A43] border border-white/15 text-sm text-white placeholder:text-white/40 focus:outline-none focus:border-[#C9A66B]"
+                          className="w-full h-11 px-3.5 bg-[#182A43] border border-white/15 text-base sm:text-sm text-white placeholder:text-white/40 focus:outline-none focus:border-[#C9A66B]"
                         />
                       </div>
 
@@ -526,7 +547,7 @@ export const PropertyDetailModal: React.FC<PropertyDetailModalProps> = ({
                           value={phone}
                           onChange={(e) => setPhone(e.target.value)}
                           placeholder="+91 98765 43210"
-                          className="w-full h-11 px-3.5 bg-[#182A43] border border-white/15 text-sm text-white placeholder:text-white/40 focus:outline-none focus:border-[#C9A66B]"
+                          className="w-full h-11 px-3.5 bg-[#182A43] border border-white/15 text-base sm:text-sm text-white placeholder:text-white/40 focus:outline-none focus:border-[#C9A66B]"
                         />
                       </div>
 
@@ -539,15 +560,15 @@ export const PropertyDetailModal: React.FC<PropertyDetailModalProps> = ({
                           rows={3}
                           value={message}
                           onChange={(e) => setMessage(e.target.value)}
-                          className="w-full p-3.5 bg-[#182A43] border border-white/15 text-sm text-white placeholder:text-white/40 focus:outline-none focus:border-[#C9A66B]"
+                          className="w-full p-3.5 bg-[#182A43] border border-white/15 text-base sm:text-sm text-white placeholder:text-white/40 focus:outline-none focus:border-[#C9A66B]"
                         />
                       </div>
 
                       <button
                         type="submit"
-                        className="w-full py-3.5 px-5 bg-[#C9A66B] hover:bg-[#DFC391] text-[#101B2D] text-xs font-semibold tracking-[0.12em] uppercase inline-flex items-center justify-center gap-2 transition-colors cursor-pointer"
+                        className="btn-lux-gold w-full py-3.5 px-5 text-xs font-semibold tracking-[0.12em] uppercase inline-flex items-center justify-center gap-2 cursor-pointer"
                       >
-                        <Send className="w-3.5 h-3.5" />
+                        <Send className="w-3.5 h-3.5 btn-lux-icon-shift" />
                         <span>
                           {enquiryMode === 'visit' ? 'Schedule Private Visit' : 'Request More Information'}
                         </span>
@@ -562,9 +583,9 @@ export const PropertyDetailModal: React.FC<PropertyDetailModalProps> = ({
                       )}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="w-full py-3 px-4 border border-[#C9A66B]/60 text-[#C9A66B] hover:bg-[#C9A66B] hover:text-[#101B2D] text-xs font-semibold tracking-[0.1em] uppercase inline-flex items-center justify-center gap-2 transition-colors"
+                      className="btn-lux-outline w-full py-3 px-4 border text-[#C9A66B] text-xs font-semibold tracking-[0.1em] uppercase inline-flex items-center justify-center gap-2"
                     >
-                      <MessageCircle className="w-4 h-4" />
+                      <MessageCircle className="w-4 h-4 btn-lux-icon-shift" />
                       <span>WhatsApp Inquiry</span>
                     </a>
                   </div>
@@ -584,7 +605,7 @@ export const PropertyDetailModal: React.FC<PropertyDetailModalProps> = ({
                       key={sim.id}
                       type="button"
                       onClick={() => onSelectSimilar(sim)}
-                      className="group text-left bg-white border border-[#101B2D]/10 hover:border-[#C9A66B] transition-colors overflow-hidden cursor-pointer"
+                      className="group text-left bg-white border border-[#101B2D]/10 hover:border-[#C9A66B] hover:shadow-lg hover:-translate-y-0.5 active:scale-[0.99] focus-visible:outline-2 focus-visible:outline-[#C9A66B] transition-all duration-200 overflow-hidden cursor-pointer"
                     >
                       <div className="relative aspect-[4/3] overflow-hidden bg-[#101B2D]">
                         <ResilientImage
@@ -612,8 +633,10 @@ export const PropertyDetailModal: React.FC<PropertyDetailModalProps> = ({
               </div>
             )}
           </div>
-        </div>
+        </motion.div>
       </div>
-    </div>
+    </motion.div>
+      )}
+    </AnimatePresence>
   );
 };

@@ -40,6 +40,19 @@ export const Header: React.FC<HeaderProps> = ({
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
+  useEffect(() => {
+    if (!mobileMenuOpen) return;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setMobileMenuOpen(false);
+    };
+    window.addEventListener('keydown', onKeyDown);
+    document.body.style.overflow = 'hidden';
+    return () => {
+      window.removeEventListener('keydown', onKeyDown);
+      document.body.style.overflow = '';
+    };
+  }, [mobileMenuOpen]);
+
   const handleLinkClick = (sectionId: string) => {
     setMobileMenuOpen(false);
     setDropdownOpen(false);
@@ -49,13 +62,13 @@ export const Header: React.FC<HeaderProps> = ({
   return (
     <>
       <header
-        className={`fixed top-0 inset-x-0 z-40 transition-all duration-300 ${
+        className={`fixed top-0 inset-x-0 w-full max-w-full z-40 transition-all duration-300 ${
           scrolled
             ? 'bg-[#101B2D]/95 backdrop-blur-md border-b border-[#C9A66B]/25 py-3 shadow-lg shadow-[#101B2D]/15'
-            : 'bg-gradient-to-b from-[#101B2D]/80 via-[#101B2D]/40 to-transparent py-5'
+            : 'bg-gradient-to-b from-[#101B2D]/80 via-[#101B2D]/40 to-transparent py-4 sm:py-5'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-6">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-3 sm:gap-6">
           {/* Zone 1: Brand Wordmark */}
           <a
             href="#hero"
@@ -71,7 +84,7 @@ export const Header: React.FC<HeaderProps> = ({
 
           {/* Zone 2: Primary Desktop Navigation */}
           <nav
-            className="hidden lg:flex items-center gap-7 text-[13px] font-medium tracking-[0.06em] text-white/90"
+            className="hidden lg:flex items-center lg:gap-4 xl:gap-7 text-[13px] font-medium tracking-[0.05em] xl:tracking-[0.06em] text-white/90"
             aria-label="Primary Navigation"
           >
             <a
@@ -96,7 +109,7 @@ export const Header: React.FC<HeaderProps> = ({
                 type="button"
                 onClick={() => setDropdownOpen((v) => !v)}
                 aria-expanded={dropdownOpen}
-                className="inline-flex items-center gap-1 py-1 hover:text-[#C9A66B] transition-colors whitespace-nowrap shrink-0 cursor-pointer"
+                className="btn-lux-link inline-flex items-center gap-1 py-1 hover:text-[#C9A66B] transition-colors whitespace-nowrap shrink-0 cursor-pointer"
               >
                 <span>Properties</span>
                 <ChevronDown
@@ -115,7 +128,7 @@ export const Header: React.FC<HeaderProps> = ({
                         setDropdownOpen(false);
                         onQuickFilter({ transaction: 'All', category: 'All' });
                       }}
-                      className="w-full text-left px-5 py-2.5 hover:bg-[#182A43] hover:text-[#C9A66B] transition-colors flex items-center justify-between"
+                      className="w-full text-left px-5 py-2.5 hover:bg-[#182A43] hover:text-[#C9A66B] hover:pl-6 active:scale-[0.99] focus-visible:outline-2 focus-visible:outline-[#C9A66B] transition-all duration-150 flex items-center justify-between cursor-pointer"
                     >
                       <span>All Curated Properties</span>
                       <span className="text-[11px] text-[#C9A66B]">13</span>
@@ -126,7 +139,7 @@ export const Header: React.FC<HeaderProps> = ({
                         setDropdownOpen(false);
                         onQuickFilter({ transaction: 'Buy', category: 'All' });
                       }}
-                      className="w-full text-left px-5 py-2.5 hover:bg-[#182A43] hover:text-[#C9A66B] transition-colors"
+                      className="w-full text-left px-5 py-2.5 hover:bg-[#182A43] hover:text-[#C9A66B] hover:pl-6 active:scale-[0.99] focus-visible:outline-2 focus-visible:outline-[#C9A66B] transition-all duration-150 cursor-pointer"
                     >
                       Buy Luxury Residences
                     </button>
@@ -136,7 +149,7 @@ export const Header: React.FC<HeaderProps> = ({
                         setDropdownOpen(false);
                         onQuickFilter({ transaction: 'Rent', category: 'All' });
                       }}
-                      className="w-full text-left px-5 py-2.5 hover:bg-[#182A43] hover:text-[#C9A66B] transition-colors"
+                      className="w-full text-left px-5 py-2.5 hover:bg-[#182A43] hover:text-[#C9A66B] hover:pl-6 active:scale-[0.99] focus-visible:outline-2 focus-visible:outline-[#C9A66B] transition-all duration-150 cursor-pointer"
                     >
                       Rent Executive Estates
                     </button>
@@ -147,7 +160,7 @@ export const Header: React.FC<HeaderProps> = ({
                         setDropdownOpen(false);
                         onQuickFilter({ transaction: 'All', category: 'Luxury Villas' });
                       }}
-                      className="w-full text-left px-5 py-2 hover:bg-[#182A43] hover:text-[#C9A66B] transition-colors text-white/75"
+                      className="w-full text-left px-5 py-2 hover:bg-[#182A43] hover:text-[#C9A66B] hover:pl-6 active:scale-[0.99] focus-visible:outline-2 focus-visible:outline-[#C9A66B] transition-all duration-150 text-white/75 cursor-pointer"
                     >
                       Luxury Villas
                     </button>
@@ -157,7 +170,7 @@ export const Header: React.FC<HeaderProps> = ({
                         setDropdownOpen(false);
                         onQuickFilter({ transaction: 'All', category: 'Penthouses' });
                       }}
-                      className="w-full text-left px-5 py-2 hover:bg-[#182A43] hover:text-[#C9A66B] transition-colors text-white/75"
+                      className="w-full text-left px-5 py-2 hover:bg-[#182A43] hover:text-[#C9A66B] hover:pl-6 active:scale-[0.99] focus-visible:outline-2 focus-visible:outline-[#C9A66B] transition-all duration-150 text-white/75 cursor-pointer"
                     >
                       Signature Penthouses
                     </button>
@@ -167,7 +180,7 @@ export const Header: React.FC<HeaderProps> = ({
                         setDropdownOpen(false);
                         onQuickFilter({ transaction: 'All', category: 'Commercial Spaces' });
                       }}
-                      className="w-full text-left px-5 py-2 hover:bg-[#182A43] hover:text-[#C9A66B] transition-colors text-white/75"
+                      className="w-full text-left px-5 py-2 hover:bg-[#182A43] hover:text-[#C9A66B] hover:pl-6 active:scale-[0.99] focus-visible:outline-2 focus-visible:outline-[#C9A66B] transition-all duration-150 text-white/75 cursor-pointer"
                     >
                       Commercial Towers
                     </button>
@@ -239,12 +252,12 @@ export const Header: React.FC<HeaderProps> = ({
           </nav>
 
           {/* Zone 3: Wishlist & Primary Action */}
-          <div className="flex items-center gap-3 shrink-0">
+          <div className="flex items-center gap-2.5 sm:gap-3 shrink-0">
             <button
               type="button"
               onClick={onOpenWishlist}
               aria-label={`Open saved properties (${wishlistCount})`}
-              className="relative inline-flex items-center justify-center w-10 h-10 text-white/90 hover:text-[#C9A66B] border border-white/20 hover:border-[#C9A66B]/60 transition-colors cursor-pointer"
+              className="btn-lux-icon relative inline-flex items-center justify-center w-11 h-11 sm:w-10 sm:h-10 text-white/90 hover:text-[#C9A66B] hover:bg-[#182A43]/80 border border-white/20 hover:border-[#C9A66B]/70 cursor-pointer"
             >
               <Heart className="w-4 h-4" />
               {wishlistCount > 0 && (
@@ -257,7 +270,7 @@ export const Header: React.FC<HeaderProps> = ({
             <button
               type="button"
               onClick={() => handleLinkClick('list-property')}
-              className="hidden sm:inline-flex items-center px-5 py-2.5 text-xs font-semibold tracking-[0.08em] uppercase bg-[#C9A66B] text-[#101B2D] hover:bg-[#DFC391] transition-colors whitespace-nowrap shrink-0 cursor-pointer"
+              className="btn-lux-gold hidden sm:inline-flex items-center lg:px-4 xl:px-5 px-5 py-2.5 text-xs font-semibold tracking-[0.08em] uppercase whitespace-nowrap shrink-0 cursor-pointer"
             >
               List Your Property
             </button>
@@ -266,7 +279,7 @@ export const Header: React.FC<HeaderProps> = ({
               type="button"
               onClick={() => setMobileMenuOpen(true)}
               aria-label="Open mobile menu"
-              className="lg:hidden inline-flex items-center justify-center w-11 h-11 text-white border border-white/25 hover:border-[#C9A66B] transition-colors cursor-pointer"
+              className="btn-lux-icon lg:hidden inline-flex items-center justify-center w-11 h-11 text-white hover:text-[#C9A66B] hover:bg-[#182A43]/80 border border-white/25 hover:border-[#C9A66B]/70 cursor-pointer"
             >
               <Menu className="w-5 h-5" />
             </button>
@@ -289,7 +302,7 @@ export const Header: React.FC<HeaderProps> = ({
                   type="button"
                   onClick={() => setMobileMenuOpen(false)}
                   aria-label="Close mobile menu"
-                  className="w-10 h-10 inline-flex items-center justify-center text-white/80 hover:text-[#C9A66B]"
+                  className="btn-lux-icon w-10 h-10 inline-flex items-center justify-center border border-white/15 hover:border-[#C9A66B] hover:bg-[#182A43] text-white/80 hover:text-[#C9A66B] cursor-pointer"
                 >
                   <X className="w-5 h-5" />
                 </button>
@@ -336,7 +349,7 @@ export const Header: React.FC<HeaderProps> = ({
                     key={item.label}
                     type="button"
                     onClick={item.action}
-                    className="w-full text-left py-3 px-2 text-base font-medium text-white/90 hover:text-[#C9A66B] border-b border-white/5 transition-colors"
+                    className="w-full text-left py-3 px-2 text-base font-medium text-white/90 hover:text-[#C9A66B] hover:bg-[#182A43]/60 hover:pl-3.5 active:scale-[0.99] focus-visible:outline-2 focus-visible:outline-[#C9A66B] border-b border-white/5 transition-all duration-200 cursor-pointer"
                   >
                     {item.label}
                   </button>
@@ -348,7 +361,7 @@ export const Header: React.FC<HeaderProps> = ({
               <button
                 type="button"
                 onClick={() => handleLinkClick('list-property')}
-                className="w-full py-3.5 px-5 bg-[#C9A66B] text-[#101B2D] text-xs font-semibold tracking-[0.1em] uppercase hover:bg-[#DFC391] transition-colors"
+                className="btn-lux-gold w-full py-3.5 px-5 text-xs font-semibold tracking-[0.1em] uppercase cursor-pointer"
               >
                 List Your Property
               </button>

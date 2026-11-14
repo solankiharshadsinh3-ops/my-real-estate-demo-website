@@ -8,29 +8,50 @@ import {
   VirtualTourProperty,
 } from '../types/realEstate';
 
-export const HERO_IMAGE = '/src/assets/images/hero_luxury_villa_1794658890368.jpg';
+import heroLuxuryVilla from '../assets/images/hero_luxury_villa_1794658890368.jpg';
+import propRoyalSkyVilla from '../assets/images/prop_royal_sky_villa_1794658891497.jpg';
+import propEliteHeights from '../assets/images/prop_elite_heights_1794658892318.jpg';
+import propGrandResidence from '../assets/images/prop_grand_residence_1794658891621.jpg';
+import propAzurePenthouse from '../assets/images/prop_azure_penthouse_1794658893153.jpg';
+import propGreenValley from '../assets/images/prop_green_valley_villa_1794658893128.jpg';
+import propUrbanTower from '../assets/images/prop_urban_business_tower_1794658894015.jpg';
+import propSovereignPavilion from '../assets/images/prop_sovereign_pavilion_1794658894068.jpg';
+import propSabarmatiCrest from '../assets/images/prop_sabarmati_crest_1794658895894.jpg';
+import propMarigoldPlot from '../assets/images/prop_marigold_estate_plot_1794658895471.jpg';
+import propCelestiaDuplex from '../assets/images/prop_celestia_duplex_1794658895880.jpg';
+import propVerandaCourt from '../assets/images/prop_veranda_court_home_1794658895963.jpg';
+import propAtelierCommerce from '../assets/images/prop_atelier_commerce_hub_1794658897029.jpg';
+import propSolarisCrown from '../assets/images/prop_solaris_crown_1794658896595.jpg';
+import interiorLivingSuite from '../assets/images/interior_living_suite_1794658897927.jpg';
+import interiorMasterBedroom from '../assets/images/interior_master_bedroom_1794658898398.jpg';
+import exteriorInfinityPool from '../assets/images/exterior_infinity_pool_1794658898774.jpg';
+import expertArjunMehta from '../assets/images/expert_arjun_mehta_1794658898534.jpg';
+import expertKavyaDesai from '../assets/images/expert_kavya_desai_1794658900224.jpg';
+import expertRohanKapadia from '../assets/images/expert_rohan_kapadia_1794658899502.jpg';
 
-const IMG_ROYAL_SKY = '/src/assets/images/prop_royal_sky_villa_1794658891497.jpg';
-const IMG_ELITE_HEIGHTS = '/src/assets/images/prop_elite_heights_1794658892318.jpg';
-const IMG_GRAND_RESIDENCE = '/src/assets/images/prop_grand_residence_1794658891621.jpg';
-const IMG_AZURE_PENTHOUSE = '/src/assets/images/prop_azure_penthouse_1794658893153.jpg';
-const IMG_GREEN_VALLEY = '/src/assets/images/prop_green_valley_villa_1794658893128.jpg';
-const IMG_URBAN_TOWER = '/src/assets/images/prop_urban_business_tower_1794658894015.jpg';
-const IMG_SOVEREIGN_PAVILION = '/src/assets/images/prop_sovereign_pavilion_1794658894068.jpg';
-const IMG_SABARMATI_CREST = '/src/assets/images/prop_sabarmati_crest_1794658895894.jpg';
-const IMG_MARIGOLD_PLOT = '/src/assets/images/prop_marigold_estate_plot_1794658895471.jpg';
-const IMG_CELESTIA_DUPLEX = '/src/assets/images/prop_celestia_duplex_1794658895880.jpg';
-const IMG_VERANDA_COURT = '/src/assets/images/prop_veranda_court_home_1794658895963.jpg';
-const IMG_ATELIER_COMMERCE = '/src/assets/images/prop_atelier_commerce_hub_1794658897029.jpg';
-const IMG_SOLARIS_CROWN = '/src/assets/images/prop_solaris_crown_1794658896595.jpg';
+export const HERO_IMAGE = heroLuxuryVilla;
 
-const IMG_LIVING_SUITE = '/src/assets/images/interior_living_suite_1794658897927.jpg';
-const IMG_MASTER_BEDROOM = '/src/assets/images/interior_master_bedroom_1794658898398.jpg';
-const IMG_INFINITY_POOL = '/src/assets/images/exterior_infinity_pool_1794658898774.jpg';
+const IMG_ROYAL_SKY = propRoyalSkyVilla;
+const IMG_ELITE_HEIGHTS = propEliteHeights;
+const IMG_GRAND_RESIDENCE = propGrandResidence;
+const IMG_AZURE_PENTHOUSE = propAzurePenthouse;
+const IMG_GREEN_VALLEY = propGreenValley;
+const IMG_URBAN_TOWER = propUrbanTower;
+const IMG_SOVEREIGN_PAVILION = propSovereignPavilion;
+const IMG_SABARMATI_CREST = propSabarmatiCrest;
+const IMG_MARIGOLD_PLOT = propMarigoldPlot;
+const IMG_CELESTIA_DUPLEX = propCelestiaDuplex;
+const IMG_VERANDA_COURT = propVerandaCourt;
+const IMG_ATELIER_COMMERCE = propAtelierCommerce;
+const IMG_SOLARIS_CROWN = propSolarisCrown;
 
-const IMG_EXPERT_ARJUN = '/src/assets/images/expert_arjun_mehta_1794658898534.jpg';
-const IMG_EXPERT_KAVYA = '/src/assets/images/expert_kavya_desai_1794658900224.jpg';
-const IMG_EXPERT_ROHAN = '/src/assets/images/expert_rohan_kapadia_1794658899502.jpg';
+const IMG_LIVING_SUITE = interiorLivingSuite;
+const IMG_MASTER_BEDROOM = interiorMasterBedroom;
+const IMG_INFINITY_POOL = exteriorInfinityPool;
+
+const IMG_EXPERT_ARJUN = expertArjunMehta;
+const IMG_EXPERT_KAVYA = expertKavyaDesai;
+const IMG_EXPERT_ROHAN = expertRohanKapadia;
 
 export const DEMO_PROPERTIES: Property[] = [
   {

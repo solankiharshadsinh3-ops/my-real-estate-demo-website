@@ -37,12 +37,17 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
         {leadProject && (
           <div className="grid grid-cols-1 lg:grid-cols-12 bg-[#101B2D] text-white border border-[#C9A66B]/30 mb-10 overflow-hidden items-stretch">
             <div className="lg:col-span-7 relative aspect-[16/10] lg:aspect-auto lg:min-h-[420px] overflow-hidden">
-              <ResilientImage
-                src={leadProject.coverImage}
-                alt={leadProject.name}
-                className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#101B2D]/70 via-transparent to-transparent" />
+              <div
+                className="w-full h-[calc(100%+28px)] -mt-3.5 animate-float-image-deep"
+                style={{ animationDelay: '0.9s' }}
+              >
+                <ResilientImage
+                  src={leadProject.coverImage}
+                  alt={leadProject.name}
+                  className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+                />
+              </div>
+              <div className="absolute inset-0 bg-gradient-to-t from-[#101B2D]/70 via-transparent to-transparent pointer-events-none" />
               <div className="absolute top-5 left-5 px-3.5 py-1.5 bg-[#101B2D]/90 border border-[#C9A66B]/40 text-[#C9A66B] text-[11px] font-semibold tracking-[0.14em] uppercase">
                 {leadProject.status}
               </div>
@@ -82,10 +87,10 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
                 <button
                   type="button"
                   onClick={() => setSelectedProject(leadProject)}
-                  className="px-6 py-3 bg-[#C9A66B] hover:bg-[#DFC391] text-[#101B2D] text-xs font-semibold tracking-[0.1em] uppercase inline-flex items-center gap-2 transition-colors cursor-pointer"
+                  className="btn-lux-gold px-6 py-3 text-xs font-semibold tracking-[0.1em] uppercase inline-flex items-center gap-2 cursor-pointer"
                 >
                   <span>View Project</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
+                  <ArrowRight className="w-3.5 h-3.5 btn-lux-arrow" />
                 </button>
               </div>
             </div>
@@ -140,10 +145,10 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
                   <button
                     type="button"
                     onClick={() => setSelectedProject(project)}
-                    className="inline-flex items-center gap-2 text-xs font-semibold tracking-[0.1em] uppercase text-[#101B2D] hover:text-[#C9A66B] transition-colors whitespace-nowrap shrink-0 cursor-pointer"
+                    className="btn-lux-link inline-flex items-center gap-2 text-xs font-semibold tracking-[0.1em] uppercase text-[#101B2D] hover:text-[#C9A66B] whitespace-nowrap shrink-0 cursor-pointer"
                   >
                     <span>View Project</span>
-                    <ArrowRight className="w-3.5 h-3.5 text-[#C9A66B]" />
+                    <ArrowRight className="w-3.5 h-3.5 text-[#C9A66B] btn-lux-arrow" />
                   </button>
                 </div>
               </div>
@@ -173,7 +178,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
                 type="button"
                 onClick={() => setSelectedProject(null)}
                 aria-label="Close project details"
-                className="absolute top-4 right-4 w-10 h-10 bg-[#101B2D]/85 text-white hover:text-[#C9A66B] flex items-center justify-center cursor-pointer"
+                className="btn-lux-icon absolute top-4 right-4 w-10 h-10 bg-[#101B2D]/85 border border-white/15 hover:border-[#C9A66B] hover:bg-[#C9A66B] text-white hover:text-[#101B2D] flex items-center justify-center cursor-pointer"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -241,7 +246,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
                     setSelectedProject(null);
                     onEnquireProject(name);
                   }}
-                  className="px-6 py-3 bg-[#101B2D] text-white hover:bg-[#182A43] text-xs font-semibold tracking-[0.1em] uppercase cursor-pointer"
+                  className="btn-lux-navy px-6 py-3 text-xs font-semibold tracking-[0.1em] uppercase cursor-pointer"
                 >
                   Request Project Dossier
                 </button>

@@ -12,6 +12,7 @@ import {
 } from 'lucide-react';
 import { ExpertConsultant, Testimonial } from '../types/realEstate';
 import { ResilientImage } from './ResilientImage';
+import { SectionDivider } from './SectionDivider';
 
 interface ExpertsAndTestimonialsProps {
   experts: ExpertConsultant[];
@@ -102,7 +103,7 @@ export const ExpertsAndTestimonials: React.FC<ExpertsAndTestimonialsProps> = ({
                           `Hello ${expert.name}, I would like to schedule a confidential property consultation.`
                         );
                       }}
-                      className="px-4 py-2.5 bg-[#101B2D] text-white hover:bg-[#182A43] text-xs font-semibold tracking-[0.08em] uppercase transition-colors cursor-pointer"
+                      className="btn-lux-navy px-4 py-2.5 text-xs font-semibold tracking-[0.08em] uppercase cursor-pointer"
                     >
                       Contact Advisor
                     </button>
@@ -113,7 +114,7 @@ export const ExpertsAndTestimonials: React.FC<ExpertsAndTestimonialsProps> = ({
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label={`${expert.name} LinkedIn`}
-                        className="w-9 h-9 border border-[#101B2D]/15 flex items-center justify-center text-[#101B2D] hover:border-[#C9A66B] hover:text-[#C9A66B] transition-colors"
+                        className="btn-lux-icon w-9 h-9 border border-[#101B2D]/15 bg-white flex items-center justify-center text-[#101B2D] hover:border-[#C9A66B] hover:bg-[#101B2D] hover:text-[#C9A66B]"
                       >
                         <Linkedin className="w-4 h-4" />
                       </a>
@@ -122,7 +123,7 @@ export const ExpertsAndTestimonials: React.FC<ExpertsAndTestimonialsProps> = ({
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label={`WhatsApp ${expert.name}`}
-                        className="w-9 h-9 border border-[#101B2D]/15 flex items-center justify-center text-[#101B2D] hover:border-[#C9A66B] hover:text-[#C9A66B] transition-colors"
+                        className="btn-lux-icon w-9 h-9 border border-[#101B2D]/15 bg-white flex items-center justify-center text-[#101B2D] hover:border-[#C9A66B] hover:bg-[#101B2D] hover:text-[#C9A66B]"
                       >
                         <MessageCircle className="w-4 h-4" />
                       </a>
@@ -134,6 +135,8 @@ export const ExpertsAndTestimonials: React.FC<ExpertsAndTestimonialsProps> = ({
           </div>
         </div>
       </section>
+
+      <SectionDivider variant="navy-gold-wave" topBg="#FFFFFF" bottomBg="#F7F6F2" />
 
       {/* Client Testimonials Carousel */}
       <section id="testimonials" className="py-20 sm:py-24 bg-[#F7F6F2]">
@@ -198,7 +201,7 @@ export const ExpertsAndTestimonials: React.FC<ExpertsAndTestimonialsProps> = ({
                       )
                     }
                     aria-label="Previous testimonial"
-                    className="w-10 h-10 border border-[#101B2D]/20 hover:border-[#C9A66B] hover:bg-[#101B2D] hover:text-[#C9A66B] flex items-center justify-center transition-colors cursor-pointer"
+                    className="btn-lux-icon w-10 h-10 border border-[#101B2D]/20 bg-white text-[#101B2D] hover:border-[#C9A66B] hover:bg-[#101B2D] hover:text-[#C9A66B] flex items-center justify-center cursor-pointer"
                   >
                     <ChevronLeft className="w-4 h-4" />
                   </button>
@@ -209,7 +212,7 @@ export const ExpertsAndTestimonials: React.FC<ExpertsAndTestimonialsProps> = ({
                     type="button"
                     onClick={() => setTestimonialIdx((testimonialIdx + 1) % testimonials.length)}
                     aria-label="Next testimonial"
-                    className="w-10 h-10 border border-[#101B2D]/20 hover:border-[#C9A66B] hover:bg-[#101B2D] hover:text-[#C9A66B] flex items-center justify-center transition-colors cursor-pointer"
+                    className="btn-lux-icon w-10 h-10 border border-[#101B2D]/20 bg-white text-[#101B2D] hover:border-[#C9A66B] hover:bg-[#101B2D] hover:text-[#C9A66B] flex items-center justify-center cursor-pointer"
                   >
                     <ChevronRight className="w-4 h-4" />
                   </button>
@@ -240,7 +243,7 @@ export const ExpertsAndTestimonials: React.FC<ExpertsAndTestimonialsProps> = ({
                 type="button"
                 onClick={() => setSelectedExpert(null)}
                 aria-label="Close modal"
-                className="w-9 h-9 bg-white/10 hover:text-[#C9A66B] flex items-center justify-center cursor-pointer"
+                className="btn-lux-icon w-9 h-9 bg-white/10 border border-white/15 hover:border-[#C9A66B] hover:bg-[#C9A66B] hover:text-[#101B2D] flex items-center justify-center cursor-pointer"
               >
                 <X className="w-4 h-4" />
               </button>
@@ -269,7 +272,7 @@ export const ExpertsAndTestimonials: React.FC<ExpertsAndTestimonialsProps> = ({
                   <button
                     type="button"
                     onClick={() => setSelectedExpert(null)}
-                    className="px-6 py-2.5 bg-[#101B2D] text-white text-xs font-semibold uppercase tracking-wider cursor-pointer"
+                    className="btn-lux-navy px-6 py-2.5 text-xs font-semibold uppercase tracking-wider cursor-pointer"
                   >
                     Done
                   </button>
@@ -282,7 +285,7 @@ export const ExpertsAndTestimonials: React.FC<ExpertsAndTestimonialsProps> = ({
                     value={clientName}
                     onChange={(e) => setClientName(e.target.value)}
                     placeholder="Your Full Name"
-                    className="w-full h-11 px-3.5 border border-[#101B2D]/20 text-sm focus:outline-none focus:border-[#C9A66B]"
+                    className="w-full h-11 px-3.5 border border-[#101B2D]/20 text-base sm:text-sm focus:outline-none focus:border-[#C9A66B]"
                   />
                   <input
                     type="email"
@@ -290,17 +293,17 @@ export const ExpertsAndTestimonials: React.FC<ExpertsAndTestimonialsProps> = ({
                     value={clientEmail}
                     onChange={(e) => setClientEmail(e.target.value)}
                     placeholder="Your Email Address"
-                    className="w-full h-11 px-3.5 border border-[#101B2D]/20 text-sm focus:outline-none focus:border-[#C9A66B]"
+                    className="w-full h-11 px-3.5 border border-[#101B2D]/20 text-base sm:text-sm focus:outline-none focus:border-[#C9A66B]"
                   />
                   <textarea
                     rows={3}
                     value={clientNote}
                     onChange={(e) => setClientNote(e.target.value)}
-                    className="w-full p-3.5 border border-[#101B2D]/20 text-sm focus:outline-none focus:border-[#C9A66B]"
+                    className="w-full p-3.5 border border-[#101B2D]/20 text-base sm:text-sm focus:outline-none focus:border-[#C9A66B]"
                   />
                   <button
                     type="submit"
-                    className="w-full py-3 bg-[#C9A66B] hover:bg-[#DFC391] text-[#101B2D] text-xs font-semibold tracking-[0.1em] uppercase cursor-pointer"
+                    className="btn-lux-gold w-full py-3 text-xs font-semibold tracking-[0.1em] uppercase cursor-pointer"
                   >
                     Send Private Consultation Request
                   </button>

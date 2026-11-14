@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Building2 } from 'lucide-react';
 
 interface ResilientImageProps {
@@ -6,6 +6,7 @@ interface ResilientImageProps {
   alt: string;
   className?: string;
   eager?: boolean;
+  fetchPriority?: 'high' | 'low' | 'auto';
 }
 
 export const ResilientImage: React.FC<ResilientImageProps> = ({
@@ -13,8 +14,13 @@ export const ResilientImage: React.FC<ResilientImageProps> = ({
   alt,
   className = '',
   eager = false,
+  fetchPriority = 'auto',
 }) => {
   const [hasError, setHasError] = useState(false);
+
+  useEffect(() => {
+    setHasError(false);
+  }, [src]);
 
   if (hasError || !src) {
     return (
@@ -37,6 +43,8 @@ export const ResilientImage: React.FC<ResilientImageProps> = ({
       alt={alt}
       loading={eager ? 'eager' : 'lazy'}
       decoding="async"
+      fetchPriority={fetchPriority}
+      draggable={false}
       referrerPolicy="no-referrer"
       onError={() => setHasError(true)}
       className={className}

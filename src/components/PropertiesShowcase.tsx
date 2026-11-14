@@ -134,7 +134,7 @@ export const PropertiesShowcase: React.FC<PropertiesShowcaseProps> = ({
                   value={filters.searchQuery}
                   onChange={(e) => updateField('searchQuery', e.target.value)}
                   placeholder="Villa, Penthouse, Sindhu Bhavan..."
-                  className="w-full h-10 pl-9 pr-3 border border-[#101B2D]/15 bg-[#F7F6F2]/50 text-sm text-[#20252C] placeholder:text-[#777E88] focus:outline-none focus:border-[#C9A66B]"
+                  className="w-full h-11 sm:h-10 pl-9 pr-3 border border-[#101B2D]/15 bg-[#F7F6F2]/50 text-base sm:text-sm text-[#20252C] placeholder:text-[#777E88] focus:outline-none focus:border-[#C9A66B]"
                 />
               </div>
             </div>
@@ -151,7 +151,7 @@ export const PropertiesShowcase: React.FC<PropertiesShowcaseProps> = ({
                 id="filter-transaction"
                 value={filters.transaction}
                 onChange={(e) => updateField('transaction', e.target.value as 'All' | ListingTransaction)}
-                className="w-full h-10 px-3 border border-[#101B2D]/15 bg-[#F7F6F2]/50 text-sm text-[#20252C] focus:outline-none focus:border-[#C9A66B]"
+                className="w-full h-11 sm:h-10 px-3 border border-[#101B2D]/15 bg-[#F7F6F2]/50 text-base sm:text-sm text-[#20252C] focus:outline-none focus:border-[#C9A66B]"
               >
                 <option value="All">Buy &amp; Rent</option>
                 <option value="Buy">For Sale (Buy)</option>
@@ -171,7 +171,7 @@ export const PropertiesShowcase: React.FC<PropertiesShowcaseProps> = ({
                 id="filter-category"
                 value={filters.category}
                 onChange={(e) => updateField('category', e.target.value as 'All' | PropertyCategory)}
-                className="w-full h-10 px-3 border border-[#101B2D]/15 bg-[#F7F6F2]/50 text-sm text-[#20252C] focus:outline-none focus:border-[#C9A66B]"
+                className="w-full h-11 sm:h-10 px-3 border border-[#101B2D]/15 bg-[#F7F6F2]/50 text-base sm:text-sm text-[#20252C] focus:outline-none focus:border-[#C9A66B]"
               >
                 <option value="All">All Categories</option>
                 <option value="Luxury Villas">Luxury Villas</option>
@@ -195,7 +195,7 @@ export const PropertiesShowcase: React.FC<PropertiesShowcaseProps> = ({
                 id="filter-location"
                 value={filters.location}
                 onChange={(e) => updateField('location', e.target.value)}
-                className="w-full h-10 px-3 border border-[#101B2D]/15 bg-[#F7F6F2]/50 text-sm text-[#20252C] focus:outline-none focus:border-[#C9A66B]"
+                className="w-full h-11 sm:h-10 px-3 border border-[#101B2D]/15 bg-[#F7F6F2]/50 text-base sm:text-sm text-[#20252C] focus:outline-none focus:border-[#C9A66B]"
               >
                 <option value="">All Cities</option>
                 <option value="Ahmedabad">Ahmedabad</option>
@@ -211,13 +211,13 @@ export const PropertiesShowcase: React.FC<PropertiesShowcaseProps> = ({
               <button
                 type="button"
                 onClick={() => setShowMoreFilters((v) => !v)}
-                className={`w-full h-10 px-4 border text-xs font-semibold tracking-[0.06em] uppercase inline-flex items-center justify-center gap-2 transition-colors cursor-pointer ${
+                className={`w-full h-11 sm:h-10 px-4 border text-xs font-semibold tracking-[0.06em] uppercase inline-flex items-center justify-center gap-2 cursor-pointer ${
                   showMoreFilters
-                    ? 'bg-[#101B2D] text-white border-[#101B2D]'
-                    : 'bg-white text-[#101B2D] border-[#101B2D]/20 hover:border-[#C9A66B]'
+                    ? 'btn-lux-navy border-[#101B2D]'
+                    : 'btn-lux-light'
                 }`}
               >
-                <SlidersHorizontal className="w-3.5 h-3.5" />
+                <SlidersHorizontal className="w-3.5 h-3.5 btn-lux-icon-shift" />
                 <span>{showMoreFilters ? 'Fewer Filters' : 'More Filters'}</span>
               </button>
             </div>
@@ -240,7 +240,7 @@ export const PropertiesShowcase: React.FC<PropertiesShowcaseProps> = ({
                   value={filters.minPriceLakhs}
                   onChange={(e) => updateField('minPriceLakhs', e.target.value)}
                   placeholder="e.g. 100"
-                  className="w-full h-10 px-3 border border-[#101B2D]/15 bg-[#F7F6F2]/50 text-sm tabular-nums focus:outline-none focus:border-[#C9A66B]"
+                  className="w-full h-11 sm:h-10 px-3 border border-[#101B2D]/15 bg-[#F7F6F2]/50 text-base sm:text-sm tabular-nums focus:outline-none focus:border-[#C9A66B]"
                 />
               </div>
 
@@ -258,7 +258,7 @@ export const PropertiesShowcase: React.FC<PropertiesShowcaseProps> = ({
                   value={filters.maxPriceLakhs}
                   onChange={(e) => updateField('maxPriceLakhs', e.target.value)}
                   placeholder="e.g. 550"
-                  className="w-full h-10 px-3 border border-[#101B2D]/15 bg-[#F7F6F2]/50 text-sm tabular-nums focus:outline-none focus:border-[#C9A66B]"
+                  className="w-full h-11 sm:h-10 px-3 border border-[#101B2D]/15 bg-[#F7F6F2]/50 text-base sm:text-sm tabular-nums focus:outline-none focus:border-[#C9A66B]"
                 />
               </div>
 
@@ -273,7 +273,7 @@ export const PropertiesShowcase: React.FC<PropertiesShowcaseProps> = ({
                   id="filter-beds"
                   value={filters.bedrooms}
                   onChange={(e) => updateField('bedrooms', e.target.value)}
-                  className="w-full h-10 px-3 border border-[#101B2D]/15 bg-[#F7F6F2]/50 text-sm tabular-nums focus:outline-none focus:border-[#C9A66B]"
+                  className="w-full h-11 sm:h-10 px-3 border border-[#101B2D]/15 bg-[#F7F6F2]/50 text-base sm:text-sm tabular-nums focus:outline-none focus:border-[#C9A66B]"
                 >
                   <option value="">Any</option>
                   <option value="3">3+ Bedrooms</option>
@@ -293,7 +293,7 @@ export const PropertiesShowcase: React.FC<PropertiesShowcaseProps> = ({
                   id="filter-baths"
                   value={filters.bathrooms}
                   onChange={(e) => updateField('bathrooms', e.target.value)}
-                  className="w-full h-10 px-3 border border-[#101B2D]/15 bg-[#F7F6F2]/50 text-sm tabular-nums focus:outline-none focus:border-[#C9A66B]"
+                  className="w-full h-11 sm:h-10 px-3 border border-[#101B2D]/15 bg-[#F7F6F2]/50 text-base sm:text-sm tabular-nums focus:outline-none focus:border-[#C9A66B]"
                 >
                   <option value="">Any</option>
                   <option value="3">3+ Bathrooms</option>
@@ -313,7 +313,7 @@ export const PropertiesShowcase: React.FC<PropertiesShowcaseProps> = ({
                   id="filter-area"
                   value={filters.minAreaSqFt}
                   onChange={(e) => updateField('minAreaSqFt', e.target.value)}
-                  className="w-full h-10 px-3 border border-[#101B2D]/15 bg-[#F7F6F2]/50 text-sm tabular-nums focus:outline-none focus:border-[#C9A66B]"
+                  className="w-full h-11 sm:h-10 px-3 border border-[#101B2D]/15 bg-[#F7F6F2]/50 text-base sm:text-sm tabular-nums focus:outline-none focus:border-[#C9A66B]"
                 >
                   <option value="">Any Size</option>
                   <option value="2500">2,500+ Sq. Ft.</option>
@@ -334,7 +334,7 @@ export const PropertiesShowcase: React.FC<PropertiesShowcaseProps> = ({
                   id="filter-furnishing"
                   value={filters.furnishing}
                   onChange={(e) => updateField('furnishing', e.target.value as 'All' | FurnishingStatus)}
-                  className="w-full h-10 px-3 border border-[#101B2D]/15 bg-[#F7F6F2]/50 text-sm focus:outline-none focus:border-[#C9A66B]"
+                  className="w-full h-11 sm:h-10 px-3 border border-[#101B2D]/15 bg-[#F7F6F2]/50 text-base sm:text-sm focus:outline-none focus:border-[#C9A66B]"
                 >
                   <option value="All">Any Furnishing</option>
                   <option value="Fully Furnished">Fully Furnished</option>
@@ -355,7 +355,7 @@ export const PropertiesShowcase: React.FC<PropertiesShowcaseProps> = ({
               <button
                 type="button"
                 onClick={onResetFilters}
-                className="inline-flex items-center gap-1.5 text-xs font-medium text-[#777E88] hover:text-[#101B2D] transition-colors cursor-pointer"
+                className="btn-lux-link inline-flex items-center gap-1.5 text-xs font-medium text-[#777E88] hover:text-[#101B2D] cursor-pointer"
               >
                 <RotateCcw className="w-3.5 h-3.5" />
                 <span>Reset Filters</span>
@@ -385,8 +385,8 @@ export const PropertiesShowcase: React.FC<PropertiesShowcaseProps> = ({
                   type="button"
                   onClick={() => setViewMode('grid')}
                   aria-label="Grid view"
-                  className={`p-2 transition-colors cursor-pointer ${
-                    viewMode === 'grid' ? 'bg-[#101B2D] text-[#C9A66B]' : 'text-[#777E88] hover:text-[#101B2D]'
+                  className={`btn-lux-tab p-2 cursor-pointer ${
+                    viewMode === 'grid' ? 'bg-[#101B2D] text-[#C9A66B]' : 'text-[#777E88] hover:text-[#101B2D] hover:bg-white/80'
                   }`}
                 >
                   <LayoutGrid className="w-4 h-4" />
@@ -395,8 +395,8 @@ export const PropertiesShowcase: React.FC<PropertiesShowcaseProps> = ({
                   type="button"
                   onClick={() => setViewMode('list')}
                   aria-label="List view"
-                  className={`p-2 transition-colors cursor-pointer ${
-                    viewMode === 'list' ? 'bg-[#101B2D] text-[#C9A66B]' : 'text-[#777E88] hover:text-[#101B2D]'
+                  className={`btn-lux-tab p-2 cursor-pointer ${
+                    viewMode === 'list' ? 'bg-[#101B2D] text-[#C9A66B]' : 'text-[#777E88] hover:text-[#101B2D] hover:bg-white/80'
                   }`}
                 >
                   <List className="w-4 h-4" />
@@ -418,7 +418,7 @@ export const PropertiesShowcase: React.FC<PropertiesShowcaseProps> = ({
             <button
               type="button"
               onClick={onResetFilters}
-              className="px-6 py-3 bg-[#101B2D] text-white text-xs font-semibold tracking-[0.1em] uppercase hover:bg-[#182A43] transition-colors cursor-pointer"
+              className="btn-lux-navy px-6 py-3 text-xs font-semibold tracking-[0.1em] uppercase cursor-pointer"
             >
               Reset All Filters
             </button>
@@ -468,10 +468,10 @@ export const PropertiesShowcase: React.FC<PropertiesShowcaseProps> = ({
                         type="button"
                         onClick={() => onToggleWishlist(property.id)}
                         aria-label={isSaved ? `Remove ${property.title} from wishlist` : `Save ${property.title} to wishlist`}
-                        className={`w-9 h-9 inline-flex items-center justify-center backdrop-blur-md transition-colors cursor-pointer ${
+                        className={`btn-lux-icon w-10 h-10 inline-flex items-center justify-center backdrop-blur-md border cursor-pointer ${
                           isSaved
-                            ? 'bg-[#C9A66B] text-[#101B2D]'
-                            : 'bg-[#101B2D]/75 text-white hover:text-[#C9A66B]'
+                            ? 'bg-[#C9A66B] text-[#101B2D] border-[#C9A66B]'
+                            : 'bg-[#101B2D]/75 border-white/15 text-white hover:text-[#C9A66B] hover:border-[#C9A66B]/70'
                         }`}
                       >
                         <Heart className={`w-4 h-4 ${isSaved ? 'fill-current' : ''}`} />
@@ -480,10 +480,10 @@ export const PropertiesShowcase: React.FC<PropertiesShowcaseProps> = ({
 
                     {/* Price Over Image Bottom */}
                     <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between gap-2">
-                      <span className="font-serif text-2xl sm:text-[26px] font-semibold text-white tabular-nums tracking-wide">
+                      <span className="font-serif text-xl sm:text-2xl lg:text-[26px] font-semibold text-white tabular-nums tracking-wide">
                         {property.priceDisplay}
                       </span>
-                      <span className="text-[11px] font-medium tracking-[0.12em] uppercase text-white/90">
+                      <span className="text-[11px] font-medium tracking-[0.12em] uppercase text-white/90 shrink-0">
                         For {property.transaction === 'Buy' ? 'Sale' : 'Lease'}
                       </span>
                     </div>
@@ -521,28 +521,28 @@ export const PropertiesShowcase: React.FC<PropertiesShowcaseProps> = ({
 
                     <div>
                       {/* Key Metrics Strip */}
-                      <div className="grid grid-cols-3 gap-3 py-4 border-y border-[#101B2D]/10 text-xs text-[#20252C] tabular-nums mb-5">
-                        <div className="flex items-center gap-2">
-                          <BedDouble className="w-4 h-4 text-[#C9A66B] shrink-0" />
-                          <span>{property.bedrooms > 0 ? `${property.bedrooms} Beds` : 'Plot / Corp'}</span>
+                      <div className="grid grid-cols-3 gap-2 sm:gap-3 py-3.5 sm:py-4 border-y border-[#101B2D]/10 text-[11px] sm:text-xs text-[#20252C] tabular-nums mb-5">
+                        <div className="flex items-center gap-1.5 sm:gap-2 min-w-0">
+                          <BedDouble className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#C9A66B] shrink-0" />
+                          <span className="truncate">{property.bedrooms > 0 ? `${property.bedrooms} Beds` : 'Plot / Corp'}</span>
                         </div>
-                        <div className="flex items-center gap-2">
-                          <Bath className="w-4 h-4 text-[#C9A66B] shrink-0" />
-                          <span>{property.bathrooms > 0 ? `${property.bathrooms} Baths` : 'Bespoke'}</span>
+                        <div className="flex items-center gap-1.5 sm:gap-2 min-w-0">
+                          <Bath className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#C9A66B] shrink-0" />
+                          <span className="truncate">{property.bathrooms > 0 ? `${property.bathrooms} Baths` : 'Bespoke'}</span>
                         </div>
-                        <div className="flex items-center gap-2">
-                          <Maximize2 className="w-4 h-4 text-[#C9A66B] shrink-0" />
-                          <span>{property.areaSqFt.toLocaleString('en-IN')} Sq.Ft.</span>
+                        <div className="flex items-center gap-1.5 sm:gap-2 min-w-0">
+                          <Maximize2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#C9A66B] shrink-0" />
+                          <span className="truncate">{property.areaSqFt.toLocaleString('en-IN')} Sq.Ft.</span>
                         </div>
                       </div>
 
                       <button
                         type="button"
                         onClick={() => onSelectProperty(property)}
-                        className="w-full py-3 px-4 bg-[#101B2D] text-white hover:bg-[#182A43] text-xs font-semibold tracking-[0.1em] uppercase inline-flex items-center justify-center gap-2 transition-colors cursor-pointer"
+                        className="btn-lux-navy w-full py-3 px-4 text-xs font-semibold tracking-[0.1em] uppercase inline-flex items-center justify-center gap-2 cursor-pointer"
                       >
                         <span>View Details</span>
-                        <ArrowRight className="w-3.5 h-3.5 text-[#C9A66B]" />
+                        <ArrowRight className="w-3.5 h-3.5 text-[#C9A66B] btn-lux-arrow" />
                       </button>
                     </div>
                   </div>

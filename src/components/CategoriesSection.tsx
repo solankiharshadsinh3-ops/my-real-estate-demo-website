@@ -17,6 +17,7 @@ const CategoryTiltCard: React.FC<TiltCardProps> = ({ category, onExplore }) => {
   const [tilt, setTilt] = useState({ rx: 0, ry: 0 });
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!window.matchMedia('(pointer: fine)').matches) return;
     const rect = e.currentTarget.getBoundingClientRect();
     const x = (e.clientX - rect.left) / rect.width - 0.5;
     const y = (e.clientY - rect.top) / rect.height - 0.5;
@@ -64,7 +65,7 @@ const CategoryTiltCard: React.FC<TiltCardProps> = ({ category, onExplore }) => {
           <button
             type="button"
             onClick={() => onExplore(category.name)}
-            className="inline-flex items-center gap-2 text-xs font-semibold tracking-[0.14em] uppercase text-[#C9A66B] hover:text-white transition-colors cursor-pointer"
+            className="btn-lux-link inline-flex items-center gap-2 text-xs font-semibold tracking-[0.14em] uppercase text-[#C9A66B] hover:text-white cursor-pointer"
           >
             <span>Explore</span>
             <span className="w-6 h-px bg-[#C9A66B] group-hover:w-10 transition-all duration-300" />
@@ -80,7 +81,7 @@ export const CategoriesSection: React.FC<CategoriesSectionProps> = ({
   onExploreCategory,
 }) => {
   return (
-    <section id="categories" className="py-20 sm:py-28 bg-[#101B2D] text-white">
+    <section id="categories" className="py-20 sm:py-28 bg-luxury-navy-animated text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
           <div className="max-w-2xl">

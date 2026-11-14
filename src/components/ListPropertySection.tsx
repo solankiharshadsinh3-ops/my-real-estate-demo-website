@@ -41,7 +41,7 @@ export const ListPropertySection: React.FC = () => {
   };
 
   return (
-    <section id="list-property" className="py-20 sm:py-28 bg-[#101B2D] text-white">
+    <section id="list-property" className="py-20 sm:py-28 bg-luxury-navy-animated text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           {/* Left Editorial Column */}
@@ -94,7 +94,7 @@ export const ListPropertySection: React.FC = () => {
                     setExpectedPrice('');
                     setDescription('');
                   }}
-                  className="px-6 py-3 bg-[#C9A66B] text-[#101B2D] text-xs font-semibold tracking-[0.1em] uppercase hover:bg-[#DFC391] transition-colors cursor-pointer"
+                  className="btn-lux-gold px-6 py-3 text-xs font-semibold tracking-[0.1em] uppercase cursor-pointer"
                 >
                   Submit Another Property
                 </button>
@@ -121,7 +121,7 @@ export const ListPropertySection: React.FC = () => {
                       value={ownerName}
                       onChange={(e) => setOwnerName(e.target.value)}
                       placeholder="Full Name"
-                      className="w-full h-11 px-3.5 bg-[#101B2D] border border-white/15 text-sm text-white placeholder:text-white/40 focus:outline-none focus:border-[#C9A66B]"
+                      className="w-full h-11 px-3.5 bg-[#101B2D] border border-white/15 text-base sm:text-sm text-white placeholder:text-white/40 focus:outline-none focus:border-[#C9A66B]"
                     />
                   </div>
 
@@ -138,7 +138,7 @@ export const ListPropertySection: React.FC = () => {
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
                       placeholder="+91 98765 43210"
-                      className="w-full h-11 px-3.5 bg-[#101B2D] border border-white/15 text-sm text-white placeholder:text-white/40 focus:outline-none focus:border-[#C9A66B]"
+                      className="w-full h-11 px-3.5 bg-[#101B2D] border border-white/15 text-base sm:text-sm text-white placeholder:text-white/40 focus:outline-none focus:border-[#C9A66B]"
                     />
                   </div>
 
@@ -155,7 +155,7 @@ export const ListPropertySection: React.FC = () => {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="owner@domain.com"
-                      className="w-full h-11 px-3.5 bg-[#101B2D] border border-white/15 text-sm text-white placeholder:text-white/40 focus:outline-none focus:border-[#C9A66B]"
+                      className="w-full h-11 px-3.5 bg-[#101B2D] border border-white/15 text-base sm:text-sm text-white placeholder:text-white/40 focus:outline-none focus:border-[#C9A66B]"
                     />
                   </div>
 
@@ -172,7 +172,7 @@ export const ListPropertySection: React.FC = () => {
                       value={location}
                       onChange={(e) => setLocation(e.target.value)}
                       placeholder="e.g. Ambli-Bopal, Ahmedabad"
-                      className="w-full h-11 px-3.5 bg-[#101B2D] border border-white/15 text-sm text-white placeholder:text-white/40 focus:outline-none focus:border-[#C9A66B]"
+                      className="w-full h-11 px-3.5 bg-[#101B2D] border border-white/15 text-base sm:text-sm text-white placeholder:text-white/40 focus:outline-none focus:border-[#C9A66B]"
                     />
                   </div>
 
@@ -187,7 +187,7 @@ export const ListPropertySection: React.FC = () => {
                       id="owner-type"
                       value={propertyType}
                       onChange={(e) => setPropertyType(e.target.value)}
-                      className="w-full h-11 px-3.5 bg-[#101B2D] border border-white/15 text-sm text-white focus:outline-none focus:border-[#C9A66B]"
+                      className="w-full h-11 px-3.5 bg-[#101B2D] border border-white/15 text-base sm:text-sm text-white focus:outline-none focus:border-[#C9A66B]"
                     >
                       <option value="Luxury Villa">Luxury Villa</option>
                       <option value="Apartment">Apartment</option>
@@ -211,7 +211,7 @@ export const ListPropertySection: React.FC = () => {
                       value={expectedPrice}
                       onChange={(e) => setExpectedPrice(e.target.value)}
                       placeholder="e.g. ₹3.5 Cr or ₹2.5 L/mo"
-                      className="w-full h-11 px-3.5 bg-[#101B2D] border border-white/15 text-sm text-white placeholder:text-white/40 focus:outline-none focus:border-[#C9A66B]"
+                      className="w-full h-11 px-3.5 bg-[#101B2D] border border-white/15 text-base sm:text-sm text-white placeholder:text-white/40 focus:outline-none focus:border-[#C9A66B]"
                     />
                   </div>
                 </div>
@@ -229,15 +229,15 @@ export const ListPropertySection: React.FC = () => {
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
                     placeholder="Share area in Sq. Ft., bedrooms, architectural highlights, and possession timeline..."
-                    className="w-full p-3.5 bg-[#101B2D] border border-white/15 text-sm text-white placeholder:text-white/40 focus:outline-none focus:border-[#C9A66B]"
+                    className="w-full p-3.5 bg-[#101B2D] border border-white/15 text-base sm:text-sm text-white placeholder:text-white/40 focus:outline-none focus:border-[#C9A66B]"
                   />
                 </div>
 
                 <button
                   type="submit"
-                  className="w-full sm:w-auto px-8 py-3.5 bg-[#C9A66B] hover:bg-[#DFC391] text-[#101B2D] text-xs font-semibold tracking-[0.12em] uppercase inline-flex items-center justify-center gap-2 transition-colors cursor-pointer"
+                  className="btn-lux-gold w-full sm:w-auto px-8 py-3.5 text-xs font-semibold tracking-[0.12em] uppercase inline-flex items-center justify-center gap-2 cursor-pointer"
                 >
-                  <Send className="w-3.5 h-3.5" />
+                  <Send className="w-3.5 h-3.5 btn-lux-icon-shift" />
                   <span>Submit Property</span>
                 </button>
               </form>

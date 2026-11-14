@@ -15,6 +15,7 @@ import {
   Youtube,
 } from 'lucide-react';
 import { BrandMark } from './BrandMark';
+import { SectionDivider } from './SectionDivider';
 import { ListingTransaction, PropertyCategory } from '../types/realEstate';
 
 interface ContactAndFooterProps {
@@ -149,7 +150,7 @@ export const ContactAndFooter: React.FC<ContactAndFooterProps> = ({
                     <Mail className="w-4 h-4 text-[#C9A66B] shrink-0 mt-1" />
                     <div>
                       <span className="font-semibold text-[#101B2D] block">Advisory Desk (Demo)</span>
-                      <span className="text-[#777E88]">concierge@eliteestates-demo.example</span>
+                      <span className="text-[#777E88] break-all">concierge@eliteestates-demo.example</span>
                     </div>
                   </div>
                 </div>
@@ -158,27 +159,27 @@ export const ContactAndFooter: React.FC<ContactAndFooterProps> = ({
                 <div className="flex flex-wrap gap-3 pt-2">
                   <a
                     href="tel:+919876543210"
-                    className="px-4 py-2.5 bg-[#101B2D] text-white hover:bg-[#182A43] text-xs font-semibold tracking-[0.08em] uppercase inline-flex items-center gap-2 transition-colors"
+                    className="btn-lux-navy px-4 min-h-[44px] py-2.5 text-xs font-semibold tracking-[0.08em] uppercase inline-flex items-center gap-2"
                   >
-                    <Phone className="w-3.5 h-3.5 text-[#C9A66B]" />
+                    <Phone className="w-3.5 h-3.5 text-[#C9A66B] btn-lux-icon-shift" />
                     <span>Call Now</span>
                   </a>
                   <a
                     href="https://wa.me/919876543210"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-4 py-2.5 bg-[#C9A66B] text-[#101B2D] hover:bg-[#DFC391] text-xs font-semibold tracking-[0.08em] uppercase inline-flex items-center gap-2 transition-colors"
+                    className="btn-lux-gold px-4 min-h-[44px] py-2.5 text-xs font-semibold tracking-[0.08em] uppercase inline-flex items-center gap-2"
                   >
-                    <MessageCircle className="w-3.5 h-3.5" />
+                    <MessageCircle className="w-3.5 h-3.5 btn-lux-icon-shift" />
                     <span>WhatsApp</span>
                   </a>
                   <a
                     href="https://maps.google.com/?q=Sindhu+Bhavan+Road+Ahmedabad"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-4 py-2.5 border border-[#101B2D]/20 text-[#101B2D] hover:border-[#C9A66B] text-xs font-semibold tracking-[0.08em] uppercase inline-flex items-center gap-2 transition-colors"
+                    className="btn-lux-outline px-4 min-h-[44px] py-2.5 border border-[#101B2D]/25 text-[#101B2D] text-xs font-semibold tracking-[0.08em] uppercase inline-flex items-center gap-2"
                   >
-                    <Navigation className="w-3.5 h-3.5 text-[#C9A66B]" />
+                    <Navigation className="w-3.5 h-3.5 text-[#C9A66B] btn-lux-icon-shift" />
                     <span>Get Directions</span>
                   </a>
                 </div>
@@ -210,14 +211,14 @@ export const ContactAndFooter: React.FC<ContactAndFooterProps> = ({
                   </text>
                 </svg>
 
-                <div className="absolute left-[46%] top-[48%] -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
-                  <span className="px-3 py-1 bg-[#C9A66B] text-[#101B2D] text-[11px] font-semibold tracking-wider uppercase shadow-lg mb-1.5">
+                <div className="absolute left-1/2 sm:left-[46%] top-[40%] sm:top-[48%] -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
+                  <span className="px-3 py-1 bg-[#C9A66B] text-[#101B2D] text-[10px] sm:text-[11px] font-semibold tracking-wider uppercase shadow-lg whitespace-nowrap mb-1.5">
                     ELITE ESTATES Lounge
                   </span>
                   <span className="w-4 h-4 bg-[#C9A66B] border-2 border-white rotate-45 shadow-md" />
                 </div>
 
-                <div className="absolute bottom-3 left-3 bg-[#101B2D]/90 px-3 py-1 text-[11px] text-white/80 border border-white/15">
+                <div className="absolute bottom-3 left-3 right-3 sm:right-auto bg-[#101B2D]/90 px-3 py-1 text-[11px] text-white/80 border border-white/15">
                   Bodakdev · Ahmedabad, Gujarat (Illustrative Map Preview)
                 </div>
               </div>
@@ -250,7 +251,7 @@ export const ContactAndFooter: React.FC<ContactAndFooterProps> = ({
                       setPhone('');
                       setMessage('');
                     }}
-                    className="px-6 py-2.5 bg-[#C9A66B] text-[#101B2D] text-xs font-semibold uppercase tracking-wider cursor-pointer"
+                    className="btn-lux-gold px-6 py-2.5 text-xs font-semibold uppercase tracking-wider cursor-pointer"
                   >
                     Send Another Message
                   </button>
@@ -273,7 +274,7 @@ export const ContactAndFooter: React.FC<ContactAndFooterProps> = ({
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                       placeholder="Your full name"
-                      className="w-full h-11 px-3.5 bg-[#182A43] border border-white/15 text-sm text-white placeholder:text-white/40 focus:outline-none focus:border-[#C9A66B]"
+                      className="w-full h-11 px-3.5 bg-[#182A43] border border-white/15 text-base sm:text-sm text-white placeholder:text-white/40 focus:outline-none focus:border-[#C9A66B]"
                     />
                   </div>
 
@@ -288,7 +289,7 @@ export const ContactAndFooter: React.FC<ContactAndFooterProps> = ({
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         placeholder="you@domain.com"
-                        className="w-full h-11 px-3.5 bg-[#182A43] border border-white/15 text-sm text-white placeholder:text-white/40 focus:outline-none focus:border-[#C9A66B]"
+                        className="w-full h-11 px-3.5 bg-[#182A43] border border-white/15 text-base sm:text-sm text-white placeholder:text-white/40 focus:outline-none focus:border-[#C9A66B]"
                       />
                     </div>
                     <div>
@@ -301,7 +302,7 @@ export const ContactAndFooter: React.FC<ContactAndFooterProps> = ({
                         value={phone}
                         onChange={(e) => setPhone(e.target.value)}
                         placeholder="+91 98765 43210"
-                        className="w-full h-11 px-3.5 bg-[#182A43] border border-white/15 text-sm text-white placeholder:text-white/40 focus:outline-none focus:border-[#C9A66B]"
+                        className="w-full h-11 px-3.5 bg-[#182A43] border border-white/15 text-base sm:text-sm text-white placeholder:text-white/40 focus:outline-none focus:border-[#C9A66B]"
                       />
                     </div>
                   </div>
@@ -316,15 +317,15 @@ export const ContactAndFooter: React.FC<ContactAndFooterProps> = ({
                       value={message}
                       onChange={(e) => setMessage(e.target.value)}
                       placeholder="Tell us about your preferred location, budget, or property requirements..."
-                      className="w-full p-3.5 bg-[#182A43] border border-white/15 text-sm text-white placeholder:text-white/40 focus:outline-none focus:border-[#C9A66B]"
+                      className="w-full p-3.5 bg-[#182A43] border border-white/15 text-base sm:text-sm text-white placeholder:text-white/40 focus:outline-none focus:border-[#C9A66B]"
                     />
                   </div>
 
                   <button
                     type="submit"
-                    className="w-full py-3.5 px-6 bg-[#C9A66B] hover:bg-[#DFC391] text-[#101B2D] text-xs font-semibold tracking-[0.12em] uppercase inline-flex items-center justify-center gap-2 transition-colors cursor-pointer"
+                    className="btn-lux-gold w-full py-3.5 px-6 text-xs font-semibold tracking-[0.12em] uppercase inline-flex items-center justify-center gap-2 cursor-pointer"
                   >
-                    <Send className="w-3.5 h-3.5" />
+                    <Send className="w-3.5 h-3.5 btn-lux-icon-shift" />
                     <span>Send Message</span>
                   </button>
                 </form>
@@ -334,8 +335,10 @@ export const ContactAndFooter: React.FC<ContactAndFooterProps> = ({
         </div>
       </section>
 
+      <SectionDivider variant="royal-closing" topBg="#FFFFFF" bottomBg="#101B2D" />
+
       {/* Multi-Column Luxury Footer */}
-      <footer className="bg-[#101B2D] text-white border-t border-[#C9A66B]/30">
+      <footer className="bg-[#101B2D] text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8">
             {/* Brand & Description */}
@@ -354,7 +357,7 @@ export const ContactAndFooter: React.FC<ContactAndFooterProps> = ({
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={socialName}
-                    className="w-10 h-10 border border-white/15 bg-[#182A43]/60 text-white/85 hover:border-[#C9A66B] hover:text-[#C9A66B] hover:-translate-y-0.5 flex items-center justify-center transition-all duration-200"
+                    className="btn-lux-icon w-10 h-10 border border-white/15 bg-[#182A43]/60 text-white/85 hover:border-[#C9A66B] hover:bg-[#182A43] hover:text-[#C9A66B] flex items-center justify-center"
                   >
                     <Icon className="w-4 h-4" />
                   </a>
@@ -372,13 +375,14 @@ export const ContactAndFooter: React.FC<ContactAndFooterProps> = ({
                   { label: 'Exclusive Projects', id: 'projects' },
                   { label: 'Virtual Tour', id: 'virtual-tour' },
                   { label: 'About Us', id: 'about' },
+                  { label: 'Market Insights', id: 'market-insights' },
                   { label: 'Contact', id: 'contact' },
                 ].map((link) => (
                   <li key={link.id}>
                     <button
                       type="button"
                       onClick={() => onNavigateSection(link.id)}
-                      className="hover:text-[#C9A66B] transition-colors cursor-pointer"
+                      className="btn-lux-link hover:text-[#C9A66B] cursor-pointer"
                     >
                       {link.label}
                     </button>
@@ -405,7 +409,7 @@ export const ContactAndFooter: React.FC<ContactAndFooterProps> = ({
                     <button
                       type="button"
                       onClick={() => onQuickFilter({ category: cat, transaction: 'All' })}
-                      className="hover:text-[#C9A66B] transition-colors text-left cursor-pointer"
+                      className="btn-lux-link hover:text-[#C9A66B] text-left cursor-pointer"
                     >
                       {cat}
                     </button>
@@ -425,7 +429,7 @@ export const ContactAndFooter: React.FC<ContactAndFooterProps> = ({
                         <button
                           type="button"
                           onClick={() => onQuickFilter({ location: loc })}
-                          className="hover:text-[#C9A66B] transition-colors cursor-pointer"
+                          className="btn-lux-link hover:text-[#C9A66B] cursor-pointer"
                         >
                           {loc}
                         </button>
@@ -436,10 +440,10 @@ export const ContactAndFooter: React.FC<ContactAndFooterProps> = ({
 
                 <div>
                   <h4 className="font-serif text-lg font-semibold text-[#C9A66B] mb-3">Contact (Demo)</h4>
-                  <p className="text-xs text-white/75 leading-relaxed">
+                  <p className="text-xs text-white/75 leading-relaxed break-words">
                     Sindhu Bhavan Road, Bodakdev, Ahmedabad 380054<br />
                     +91 98765 43210<br />
-                    concierge@eliteestates-demo.example
+                    <span className="break-all">concierge@eliteestates-demo.example</span>
                   </p>
                 </div>
               </div>
@@ -464,11 +468,11 @@ export const ContactAndFooter: React.FC<ContactAndFooterProps> = ({
                       onChange={(e) => setNewsletterEmail(e.target.value)}
                       placeholder="Your email address"
                       aria-label="Newsletter email address"
-                      className="flex-1 min-w-0 h-10 px-3 bg-[#182A43] border border-white/15 text-xs text-white placeholder:text-white/45 focus:outline-none focus:border-[#C9A66B]"
+                      className="flex-1 min-w-0 h-11 sm:h-10 px-3 bg-[#182A43] border border-white/15 text-base sm:text-xs text-white placeholder:text-white/45 focus:outline-none focus:border-[#C9A66B]"
                     />
                     <button
                       type="submit"
-                      className="px-4 h-10 bg-[#C9A66B] hover:bg-[#DFC391] text-[#101B2D] text-xs font-semibold uppercase tracking-wider whitespace-nowrap shrink-0 cursor-pointer"
+                      className="btn-lux-gold px-4 h-11 sm:h-10 text-xs font-semibold uppercase tracking-wider whitespace-nowrap shrink-0 cursor-pointer"
                     >
                       Join
                     </button>

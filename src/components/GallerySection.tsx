@@ -74,10 +74,10 @@ export const GallerySection: React.FC<GallerySectionProps> = ({ photos }) => {
                   setActiveFilter(cat);
                   setLightboxIdx(null);
                 }}
-                className={`px-3 py-1.5 text-xs font-medium transition-colors whitespace-nowrap shrink-0 cursor-pointer ${
+                className={`btn-lux-tab px-3 py-2 min-h-[38px] text-xs font-medium whitespace-nowrap shrink-0 cursor-pointer ${
                   activeFilter === cat
-                    ? 'bg-[#101B2D] text-[#C9A66B]'
-                    : 'text-[#777E88] hover:text-[#101B2D]'
+                    ? 'bg-[#101B2D] text-[#C9A66B] shadow-sm'
+                    : 'text-[#777E88] hover:text-[#101B2D] hover:bg-[#F7F6F2]'
                 }`}
               >
                 {cat}
@@ -93,7 +93,7 @@ export const GallerySection: React.FC<GallerySectionProps> = ({ photos }) => {
               key={photo.id}
               type="button"
               onClick={() => setLightboxIdx(index)}
-              className="group relative w-full break-inside-avoid block overflow-hidden bg-[#101B2D] border border-[#101B2D]/10 text-left cursor-pointer"
+              className="group relative w-full break-inside-avoid block overflow-hidden bg-[#101B2D] border border-[#101B2D]/10 hover:border-[#C9A66B]/60 focus-visible:outline-2 focus-visible:outline-[#C9A66B] active:scale-[0.99] transition-all duration-200 text-left cursor-pointer"
             >
               <div
                 className={`w-full overflow-hidden ${
@@ -139,7 +139,7 @@ export const GallerySection: React.FC<GallerySectionProps> = ({ photos }) => {
             type="button"
             onClick={() => setLightboxIdx(null)}
             aria-label="Close gallery lightbox"
-            className="absolute top-5 right-5 w-11 h-11 bg-white/10 hover:bg-[#C9A66B] hover:text-[#101B2D] text-white flex items-center justify-center transition-colors cursor-pointer"
+            className="btn-lux-icon absolute top-5 right-5 w-11 h-11 bg-white/10 border border-white/20 hover:border-[#C9A66B] hover:bg-[#C9A66B] hover:text-[#101B2D] text-white flex items-center justify-center cursor-pointer"
           >
             <X className="w-5 h-5" />
           </button>
@@ -152,13 +152,13 @@ export const GallerySection: React.FC<GallerySectionProps> = ({ photos }) => {
               )
             }
             aria-label="Previous image"
-            className="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 w-11 h-11 bg-[#101B2D]/80 border border-[#C9A66B]/40 text-white hover:bg-[#C9A66B] hover:text-[#101B2D] flex items-center justify-center transition-colors cursor-pointer"
+            className="btn-lux-positioned hidden sm:flex absolute left-6 top-1/2 -translate-y-1/2 w-11 h-11 bg-[#101B2D]/80 border border-[#C9A66B]/40 text-white hover:bg-[#C9A66B] hover:text-[#101B2D] items-center justify-center cursor-pointer"
           >
             <ChevronLeft className="w-5 h-5" />
           </button>
 
           <div className="max-w-5xl w-full flex flex-col items-center">
-            <div className="relative w-full max-h-[75vh] aspect-[16/10] bg-[#101B2D] overflow-hidden border border-[#C9A66B]/30">
+            <div className="relative w-full max-h-[70vh] sm:max-h-[75vh] aspect-[4/3] sm:aspect-[16/10] bg-[#101B2D] overflow-hidden border border-[#C9A66B]/30">
               <ResilientImage
                 src={currentPhoto.image}
                 alt={currentPhoto.title}
@@ -171,11 +171,33 @@ export const GallerySection: React.FC<GallerySectionProps> = ({ photos }) => {
                 <span className="text-xs uppercase tracking-[0.14em] text-[#C9A66B] block">
                   {currentPhoto.category} · {currentPhoto.location}
                 </span>
-                <h3 className="font-serif text-2xl font-semibold">{currentPhoto.title}</h3>
+                <h3 className="font-serif text-xl sm:text-2xl font-semibold">{currentPhoto.title}</h3>
               </div>
-              <span className="text-xs text-white/70 tabular-nums">
-                {lightboxIdx + 1} / {visiblePhotos.length}
-              </span>
+              <div className="flex items-center gap-3">
+                <button
+                  type="button"
+                  onClick={() =>
+                    setLightboxIdx(
+                      (lightboxIdx - 1 + visiblePhotos.length) % visiblePhotos.length
+                    )
+                  }
+                  aria-label="Previous photo"
+                  className="btn-lux-icon sm:hidden w-11 h-11 bg-[#182A43] border border-[#C9A66B]/40 text-white flex items-center justify-center cursor-pointer"
+                >
+                  <ChevronLeft className="w-5 h-5" />
+                </button>
+                <span className="text-xs text-white/70 tabular-nums">
+                  {lightboxIdx + 1} / {visiblePhotos.length}
+                </span>
+                <button
+                  type="button"
+                  onClick={() => setLightboxIdx((lightboxIdx + 1) % visiblePhotos.length)}
+                  aria-label="Next photo"
+                  className="btn-lux-icon sm:hidden w-11 h-11 bg-[#182A43] border border-[#C9A66B]/40 text-white flex items-center justify-center cursor-pointer"
+                >
+                  <ChevronRight className="w-5 h-5" />
+                </button>
+              </div>
             </div>
           </div>
 
@@ -183,7 +205,7 @@ export const GallerySection: React.FC<GallerySectionProps> = ({ photos }) => {
             type="button"
             onClick={() => setLightboxIdx((lightboxIdx + 1) % visiblePhotos.length)}
             aria-label="Next image"
-            className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 w-11 h-11 bg-[#101B2D]/80 border border-[#C9A66B]/40 text-white hover:bg-[#C9A66B] hover:text-[#101B2D] flex items-center justify-center transition-colors cursor-pointer"
+            className="btn-lux-positioned hidden sm:flex absolute right-6 top-1/2 -translate-y-1/2 w-11 h-11 bg-[#101B2D]/80 border border-[#C9A66B]/40 text-white hover:bg-[#C9A66B] hover:text-[#101B2D] items-center justify-center cursor-pointer"
           >
             <ChevronRight className="w-5 h-5" />
           </button>
