@@ -1,0 +1,102 @@
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Cormorant Garamond", Georgia, serif;
+  --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+  --color-navy-deep: #101B2D;
+  --color-navy-royal: #182A43;
+  --color-gold: #C9A66B;
+  --color-gold-light: #DFC391;
+  --color-ivory: #F7F6F2;
+  --color-charcoal: #20252C;
+  --color-slate-gray: #777E88;
+}
+
+@layer base {
+  html,
+  body {
+    overflow-x: hidden;
+    font-family: var(--font-sans);
+    background-color: #F7F6F2;
+    color: #20252C;
+  }
+
+  h1,
+  h2,
+  h3,
+  .font-display {
+    font-family: var(--font-serif);
+    text-wrap: balance;
+  }
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+@keyframes slowZoom {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.07);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes floatGentle {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes goldPulseLine {
+  0%,
+  100% {
+    opacity: 0.25;
+    transform: translateY(0px);
+  }
+  50% {
+    opacity: 0.75;
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes curtainFade {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+.animate-slow-zoom {
+  animation: slowZoom 24s ease-in-out infinite;
+}
+
+.animate-float-gentle {
+  animation: floatGentle 6s ease-in-out infinite;
+}
+
+.animate-gold-particle {
+  animation: goldPulseLine 5s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-slow-zoom,
+  .animate-float-gentle,
+  .animate-gold-particle {
+    animation: none !important;
+  }
+  html {
+    scroll-behavior: auto !important;
+  }
+}
